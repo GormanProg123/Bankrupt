@@ -1,8 +1,7 @@
-import React from 'react';
 import { Icon } from '../../atoms/Icon';
 import WalletCard from '../../molecules/WalletCard/index';
 
-const WalletHeader: React.FC = () => {
+const WalletHeader = () => {
   return (
     <div className="wallet-top py-10">
       <div className="container flex justify-between items-center mx-auto">

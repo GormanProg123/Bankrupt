@@ -1,13 +1,12 @@
-// src/templates/WalletTemplate/WalletTemplate.tsx
-import React, { useState } from 'react';
-import {WalletNavBar} from '../../molecules/WalletNavBar';
+import { useState } from 'react';
+import WalletNavBar from '../../molecules/WalletNavBar';
 import WalletHeader from '../../organisms/WalletHeader/index';
 import WalletActivity from '../..//organisms/WalletActivity/index';
 import SidePanel from '../../organisms/SidePanel/index';
-// import Footer from '../../components/organisms/Footer/Footer';
 import { Transaction } from '../../../types/wallet';        
+import Footer from '../../organisms/Footer';
 
-const WalletTemplate: React.FC = () => {
+const WalletTemplate = () => {
   const [transactions] = useState<Transaction[]>([
     { date: 'Apr 30, 2025', description: 'Salary Deposit', category: 'Income', amount: '+$3,500.00' },
     { date: 'Apr 29, 2025', description: 'Grocery Store', category: 'Groceries', amount: '-$85.25' },
@@ -34,7 +33,7 @@ const WalletTemplate: React.FC = () => {
           <SidePanel />
         </div>
       </main>
-      
+      <Footer />
       
     </div>
   );

@@ -1,5 +1,4 @@
-
-export const SavingsGoals = () => {
+const SavingsGoals = () => {
   return (
     <aside className="saving-goals border rounded-lg p-5 bg-white shadow-sm mb-4">
       <h2 className="text-xl font-bold mb-1">Savings Goals</h2>

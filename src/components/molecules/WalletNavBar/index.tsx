@@ -6,7 +6,7 @@ interface HeaderProps {
     username: string;
   }
 
-export const WalletNavBar: React.FC<HeaderProps> = ({ username }) => {
+const WalletNavBar = ({username}: HeaderProps) => {
   const navigate = useNavigate();
 
   return (
@@ -23,7 +23,7 @@ export const WalletNavBar: React.FC<HeaderProps> = ({ username }) => {
           </a>
           <a href="#" className="link text-lg  hover:font-bold">
             Dashboard
-          </a>
+          </a>  
           <a href="#" className="link text-lg  hover:font-bold">
           Transfer
           </a>
@@ -41,3 +41,5 @@ export const WalletNavBar: React.FC<HeaderProps> = ({ username }) => {
     </nav>
   );
 };
+
+export default WalletNavBar;

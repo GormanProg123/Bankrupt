@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
+
 import { Transaction, FilterType } from '../../../types/wallet';
 
 interface TransactionTableProps {
   transactions: Transaction[];
 }
 
-const TransactionTable: React.FC<TransactionTableProps> = ({ transactions }) => {
+const TransactionTable = ({ transactions }: TransactionTableProps) => {
   const [filteredTransactions, setFilteredTransactions] = useState<Transaction[]>([]);
   const [filter, setFilter] = useState<FilterType>('all');
   const [currentPage, setCurrentPage] = useState(1);

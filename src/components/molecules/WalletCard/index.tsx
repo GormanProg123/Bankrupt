@@ -1,4 +1,3 @@
-import React from 'react';
 import { Icon } from '../../atoms/Icon';
 
 type IconClassType = 
@@ -25,13 +24,13 @@ interface WalletCardProps {
   iconWrapper?: boolean;
 }
 
-const WalletCard: React.FC<WalletCardProps> = ({ 
+const WalletCard = ({ 
   title, 
   amount, 
   icon, 
   additionalClasses = '', 
   iconWrapper = false 
-}) => {
+}: WalletCardProps) => {
   return (
     <div className={`card mr-5 bg-white p-6 rounded-2xl shadow-xl w-fit flex flex-col border-gray-300 border-2 ${additionalClasses}`}>
       <div className="flex items-center justify-between pb-5">
