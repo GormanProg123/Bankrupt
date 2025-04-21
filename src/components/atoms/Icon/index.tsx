@@ -9,6 +9,11 @@ import {
   faHourglassHalf,
   faBolt,
   faGift,
+  faDownload,
+  faStar,
+  faPlus,
+  faWallet,
+  faArrowRight
 } from "@fortawesome/free-solid-svg-icons";
 import "./styles/style.css";
 
@@ -22,7 +27,12 @@ interface IconProps {
     | "fa-chart-line"
     | "fa-hourglass-half"
     | "fa-bolt"
-    | "fa-gift";
+    | "fa-gift"
+    | "fa-download"
+    | "fa-star"
+    | "fa-plus"
+    | "fa-wallet"
+    | "fa-arrow-right";
   size?: "small" | "medium" | "large";
 }
 
@@ -36,6 +46,11 @@ const iconMap = {
   "fa-hourglass-half": faHourglassHalf,
   "fa-bolt": faBolt,
   "fa-gift": faGift,
+  "fa-download": faDownload,
+  "fa-star": faStar,
+  "fa-plus": faPlus,
+  "fa-wallet":faWallet,
+  "fa-arrow-right":faArrowRight,
 };
 
 export const Icon = ({ iconClass, size = "large" }: IconProps) => {
