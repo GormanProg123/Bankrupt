@@ -1,5 +1,4 @@
 
-import React from 'react';
 import { Icon } from '../../atoms/Icon';
 
 const QuickActions = () => {
