@@ -5,7 +5,7 @@ import { RegistrationPage } from "../components/pages/RegistrationPage";
 import { RegistrationStepOne } from "../components/features/RegistrationFeatures/features/StepOne";
 import { RegistrationStepTwo } from "../components/features/RegistrationFeatures/features/StepTwo";
 import { RegistrationStepThree } from "../components/features/RegistrationFeatures/features/StepThree";
-
+import { WalletPage } from "../components/pages/WalletPage";
 export const AppRoutes = () => {
   return (
     <Routes>
@@ -15,6 +15,7 @@ export const AppRoutes = () => {
       <Route path="/registration/step1" element={<RegistrationStepOne />} />
       <Route path="/registration/step2" element={<RegistrationStepTwo />} />
       <Route path="/registration/step3" element={<RegistrationStepThree />} />
+      <Route path="/wallet" element={<WalletPage />} />
     </Routes>
   );
 };
