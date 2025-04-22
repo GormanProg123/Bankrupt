@@ -1,5 +1,5 @@
-import { HomeTemplate } from "../../templates/HomeTemplate";
+import { HomeFeatures } from "../../features/HomeFeatures";
 
 export const HomePage = () => {
-  return <HomeTemplate />;
+  return <HomeFeatures />;
 };
