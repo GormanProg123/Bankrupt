@@ -1,0 +1,23 @@
+.logo-atom {
+  display: flex;
+  align-items: center;
+}
+
+.logo-atom-img {
+  margin-right: 8px;
+}
+
+.logo--small {
+  width: 32px;
+  height: 32px;
+}
+
+.logo--medium {
+  width: 48px;
+  height: 48px;
+}
+
+.logo--large {
+  width: 64px;
+  height: 64px;
+}

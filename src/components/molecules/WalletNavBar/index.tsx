@@ -1,12 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import { Logo } from "../../atoms/Logo";
 
-
 interface HeaderProps {
-    username: string;
-  }
+  username: string;
+}
 
-const WalletNavBar = ({username}: HeaderProps) => {
+const WalletNavBar = ({ username }: HeaderProps) => {
   const navigate = useNavigate();
 
   return (
@@ -19,24 +18,24 @@ const WalletNavBar = ({username}: HeaderProps) => {
             Home
           </a>
           <a href="#" className="link text-lg  hover:font-bold">
-            My Wallet   
+            My Wallet
           </a>
           <a href="#" className="link text-lg  hover:font-bold">
             Dashboard
-          </a>  
+          </a>
           <a href="#" className="link text-lg  hover:font-bold">
-          Transfer
+            Transfer
           </a>
         </div>
 
         <div className="user-entry flex gap-2 flex-wrap justify-center md:justify-end">
-            <button
-              className="text-black bg-transparent border-gray-400 border hover:border-gray-600 px-4 py-2 rounded-2xl"
-              onClick={() => navigate("/profile")}
-            >
-              {username}
-            </button>
-          </div>
+          <button
+            className="text-black bg-transparent border-gray-400 border hover:border-gray-600 px-4 py-2 rounded-2xl"
+            onClick={() => navigate("/profile")}
+          >
+            {username}
+          </button>
+        </div>
       </div>
     </nav>
   );
