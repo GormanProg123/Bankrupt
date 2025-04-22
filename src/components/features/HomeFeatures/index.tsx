@@ -21,15 +21,15 @@ export const HomeFeatures = () => {
     <div className="home-container">
       <header className="header">
         <NavHeader />
-        <div className="header-banner">
-          <div className="banner-content">
+        <div className="header-banner-23">
+          <div className="banner-content-23">
             <div className="text-side">
               <h1>Banking that puts you first</h1>
               <p>
                 Experience seamless banking with Horizon. Manage your finances,
                 make payments, and grow your savings all in one place.
               </p>
-              <div className="btns">
+              <div className="btns-23">
                 <button onClick={() => navigate("/registration")}>
                   Open an account →
                 </button>
@@ -44,8 +44,8 @@ export const HomeFeatures = () => {
       </header>
 
       <main className="main">
-        <div className="features">
-          <div className="features-top">
+        <div className="features-main">
+          <div className="features-main-top">
             <div className="label">Features</div>
             <h2>Everything you need in one place</h2>
             <p>
@@ -112,8 +112,8 @@ export const HomeFeatures = () => {
         </div>
       </main>
 
-      <footer className="footer">
-        <div className="container">
+      <footer className="footer-main">
+        <div className="footer-main-container">
           <div className="logo-main">
             <img src={logo} alt="logo" className="logo-img" />
             <p className="site-name">Bankrupt</p>

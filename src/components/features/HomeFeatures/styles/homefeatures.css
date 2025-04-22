@@ -3,25 +3,26 @@
 }
 
 /* Header Banner */
-.header-banner {
+.header-banner-23 {
   padding: 32px 0;
   background: #f8f8f8;
   color: black;
 }
-.banner-content {
+.banner-content-23 {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
   align-items: center;
 }
 
-.btns {
+.btns-23 {
   display: flex;
   gap: 16px;
   margin-bottom: 16px;
+  color: white;
 }
 
-.btns button {
+.btns-23 button {
   padding: 12px 24px;
   font-size: 16px;
   border-radius: 999px;
@@ -31,7 +32,7 @@
   transition: background-color 0.3s ease;
 }
 
-.btns button:hover {
+.btns-23 button:hover {
   background-color: #463c3c;
 }
 
@@ -51,14 +52,14 @@
   border-radius: 8px;
 }
 
-.features {
+.features-main {
   padding: 48px 16px;
   color: black;
 }
-.features-top {
+.features-main-top {
   text-align: center;
 }
-.features-top h2 {
+.features-main-top h2 {
   color: black;
 }
 .label {
@@ -92,12 +93,12 @@
 }
 
 /* Footer */
-.footer {
+.footer-main {
   background: #f1f1f1;
   padding: 24px 0;
   color: black;
 }
-.footer .container {
+.footer-main .footer-main-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
