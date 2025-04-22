@@ -13,8 +13,8 @@ export const Logo = ({ size = "small" }: LogoProps) => {
       : "logo--large";
 
   return (
-    <div className="logo">
-      <img src={logoIcon} alt="logo" className={`logo-img ${sizeClass}`} />
+    <div className="logo-atom">
+      <img src={logoIcon} alt="logo" className={`logo-atom-img ${sizeClass}`} />
       <p className="font-bold text-2xl">Bankrupt</p>
     </div>
   );
