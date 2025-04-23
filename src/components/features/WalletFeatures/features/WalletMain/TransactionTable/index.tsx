@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import { Transaction, FilterType } from '../../../types/wallet';
+import { Transaction, FilterType } from '../../../../../../types/wallet';
 
 interface TransactionTableProps {
   transactions: Transaction[];

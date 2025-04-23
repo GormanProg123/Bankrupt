@@ -1,5 +1,5 @@
 
-import { Icon } from '../../atoms/Icon';
+import { Icon } from '../../../../../../atoms/Icon';
 
 const QuickActions = () => {
   return (

@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { Logo } from "../../atoms/Logo";
+import { Logo } from "../../../../../atoms/Logo";
 
 interface HeaderProps {
   username: string;
@@ -10,7 +10,7 @@ const WalletNavBar = ({ username }: HeaderProps) => {
 
   return (
     <nav className="nav">
-      <div className="container">
+      <div className="container flex justify-between items-center mx-auto py-5 ">
         <Logo />
 
         <div className="links flex flex-wrap justify-center md:justify-start gap-4 text-lg ml-10">
@@ -30,7 +30,7 @@ const WalletNavBar = ({ username }: HeaderProps) => {
 
         <div className="user-entry flex gap-2 flex-wrap justify-center md:justify-end">
           <button
-            className="text-black bg-transparent border-gray-400 border hover:border-gray-600 px-4 py-2 rounded-2xl"
+            className="text-black bg-transparent cursor-pointer text-black border-gray-400 border hover:border-gray-600 px-4 py-2 rounded-2xl"
             onClick={() => navigate("/profile")}
           >
             {username}
