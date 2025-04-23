@@ -33,7 +33,7 @@
 .linksmain a:active {
   color: yellow;
 }
-.user-entry button {
+/* .user-entry button {
   margin: 0 4px;
   padding: 8px 16px;
   border-radius: 999px;
@@ -42,4 +42,4 @@
 }
 .user-entry button:hover {
   background-color: #463c3c;
-}
+} */

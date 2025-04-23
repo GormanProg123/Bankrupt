@@ -1,5 +1,5 @@
-import { Icon } from '../../atoms/Icon';
-import WalletCard from '../../molecules/WalletCard/index';
+import { Icon } from '../../../../atoms/Icon';
+import WalletCard from './WalletCard/index';
 
 const WalletHeader = () => {
   return (

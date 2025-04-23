@@ -1,5 +1,5 @@
-import WalletTemplate from '../../templates/WalletTemplate/index';
+import {Wallet} from '../../../components/features/WalletFeatures/index'  ;
 
 export const WalletPage = () => {
-  return <WalletTemplate />;
+  return <Wallet />;
 };

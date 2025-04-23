@@ -1,12 +1,11 @@
 import { useState } from 'react';
-import WalletNavBar from '../../molecules/WalletNavBar';
-import WalletHeader from '../../organisms/WalletHeader/index';
-import WalletActivity from '../..//organisms/WalletActivity/index';
-import SidePanel from '../../organisms/SidePanel/index';
+import WalletNavBar from './features/WalletHeader/WalletNavBar';
+import WalletHeader from '../../features/WalletFeatures/features/WalletHeader/index';
 import { Transaction } from '../../../types/wallet';        
-import Footer from '../../organisms/Footer';
+import Footer from '../../shared/Footer';
+import WalletMain from './features/WalletMain/index';
 
-const WalletTemplate = () => {
+export const Wallet = () => {
   const [transactions] = useState<Transaction[]>([
     { date: 'Apr 30, 2025', description: 'Salary Deposit', category: 'Income', amount: '+$3,500.00' },
     { date: 'Apr 29, 2025', description: 'Grocery Store', category: 'Groceries', amount: '-$85.25' },
@@ -27,16 +26,13 @@ const WalletTemplate = () => {
       <WalletNavBar username="John Doe" />
       <WalletHeader />
       
-      <main className="main flex-1 pb-10">
-        <div className="container mx-auto flex justify-center w-full">
-          <WalletActivity transactions={transactions} />
-          <SidePanel />
-        </div>
-      </main>
+
+      <WalletMain transactions={transactions} />
+      
       <Footer />
       
     </div>
   );
 };
 
-export default WalletTemplate;
+
