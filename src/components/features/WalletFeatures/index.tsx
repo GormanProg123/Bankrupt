@@ -2,7 +2,7 @@ import { useState } from 'react';
 import WalletNavBar from './features/WalletHeader/WalletNavBar';
 import WalletHeader from '../../features/WalletFeatures/features/WalletHeader/index';
 import { Transaction } from '../../../types/wallet';        
-import Footer from '../../atoms/Footer';
+import Footer from '../../shared/Footer';
 import WalletMain from './features/WalletMain/index';
 
 export const Wallet = () => {
