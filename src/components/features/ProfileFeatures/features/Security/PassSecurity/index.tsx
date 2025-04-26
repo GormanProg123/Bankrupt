@@ -8,10 +8,11 @@ import Switch from '@mui/material/Switch';
 export const PassSecurity = () => {
 
     const [twoFactor,setTwoFactor] = useState<boolean>(false);
-    const [loginAlerts,setLoginAlerts] = useState<boolean>(false);
+    // const [loginAlerts,setLoginAlerts] = useState<boolean>(false);
     
     useEffect(() => {
         console.log(twoFactor)
+        
     },[twoFactor])
     return (
         <>
@@ -51,7 +52,7 @@ export const PassSecurity = () => {
                         <p className="last-chang text-gray-400">Receive notifications for new logins to your account</p>
                         <div className="line w-full bg-gray-300 h-[2px] mt-3"></div>
                     </div>
-                        
+
                 </div>
             </div>
         </>
