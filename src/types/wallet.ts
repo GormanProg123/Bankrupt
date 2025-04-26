@@ -6,3 +6,4 @@ export type Transaction = {
   };
   
   export type FilterType = 'all' | 'income' | 'expense';
+  export type FilterTypeProfile = 'Security' | 'Notifications' | 'Preferences';

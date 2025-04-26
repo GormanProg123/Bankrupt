@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import WalletNavBar from './features/WalletHeader/WalletNavBar';
+import {LoggedNavBar} from '../../shared/LoggedNavBar';
 import WalletHeader from '../../features/WalletFeatures/features/WalletHeader/index';
 import { Transaction } from '../../../types/wallet';        
 import Footer from '../../shared/Footer';
@@ -23,7 +23,7 @@ export const Wallet = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <WalletNavBar username="John Doe" />
+      <LoggedNavBar username="John Doe" />
       <WalletHeader />
       
 
