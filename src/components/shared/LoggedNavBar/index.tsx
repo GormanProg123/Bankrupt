@@ -1,16 +1,16 @@
 import { useNavigate } from "react-router-dom";
-import { Logo } from "../../../../../atoms/Logo";
+import { Logo } from "../../atoms/Logo/index";
 
 interface HeaderProps {
   username: string;
 }
 
-const WalletNavBar = ({ username }: HeaderProps) => {
+export const LoggedNavBar = ({ username }: HeaderProps) => {
   const navigate = useNavigate();
 
   return (
-    <nav className="nav">
-      <div className="container flex justify-between items-center mx-auto py-5 ">
+    <nav className="nav border-b-[2px]">
+      <div className="container flex justify-between items-center mx-auto py-5  ">
         <Logo />
 
         <div className="links flex flex-wrap justify-center md:justify-start gap-4 text-lg ml-10">
@@ -41,4 +41,4 @@ const WalletNavBar = ({ username }: HeaderProps) => {
   );
 };
 
-export default WalletNavBar;
+
