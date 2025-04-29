@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import logo from "../../../../../assets/logo.png";
-import "./styles/loginform.css";
 
 export const LoginForm = () => {
   const [email, setEmail] = useState("");
@@ -29,30 +28,32 @@ export const LoginForm = () => {
       }
 
       const data = await response.json();
-
+      localStorage.setItem("user", JSON.stringify(data.user));
       document.cookie = `access_token=${data.access_token}; path=/; secure; samesite=strict`;
-
-      navigate("/");
+      navigate("/home");
     } catch (error: unknown) {
       console.log("Login failed: " + error);
     }
   };
 
   return (
-    <div className="login-container">
-      <div className="logo">
-        <img src={logo} alt="logo" className="logo-img" />
-        <p className="logo-text">Bankrupt</p>
+    <div className="min-h-screen flex flex-col justify-center items-center bg-gray-100 relative text-black">
+      <div className="flex items-center absolute top-4 left-4">
+        <img src={logo} alt="logo" className="w-8 h-8 mr-2" />
+        <p className="font-bold text-2xl">Bankrupt</p>
       </div>
 
-      <form className="login-form" onSubmit={handleSubmit}>
-        <h1 className="form-title">Sign In</h1>
-        <p className="form-description">
+      <form
+        onSubmit={handleSubmit}
+        className="w-full max-w-md bg-white rounded-2xl shadow-lg p-8"
+      >
+        <h1 className="text-2xl font-bold mb-2 text-center">Sign In</h1>
+        <p className="text-gray-500 text-sm mb-6 text-center">
           Enter your credentials to access your account
         </p>
 
-        <div className="input-group">
-          <label htmlFor="email" className="input-label">
+        <div className="mb-6">
+          <label htmlFor="email" className="block text-sm font-medium mb-2">
             Email
           </label>
           <input
@@ -61,16 +62,16 @@ export const LoginForm = () => {
             required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="input-field"
+            className="w-full p-3 rounded-xl border border-gray-300 bg-white text-black focus:outline-none focus:ring-2 focus:ring-black"
           />
         </div>
 
-        <div className="input-group">
-          <div className="password-header">
-            <label htmlFor="password" className="input-label">
+        <div className="mb-6">
+          <div className="flex justify-between items-center mb-2">
+            <label htmlFor="password" className="text-sm font-medium">
               Password
             </label>
-            <a href="#" className="forgot-password">
+            <a href="#" className="text-sm text-blue-600 hover:underline">
               Forgot Password?
             </a>
           </div>
@@ -80,17 +81,20 @@ export const LoginForm = () => {
             required
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="input-field"
+            className="w-full p-3 rounded-xl border border-gray-300 bg-white text-black focus:outline-none focus:ring-2 focus:ring-black"
           />
         </div>
 
-        <button type="submit" className="submit-button">
+        <button
+          type="submit"
+          className="w-full py-3 bg-black text-white font-medium rounded-xl hover:bg-white hover:text-black hover:border hover:border-gray-600 transition"
+        >
           Sign In
         </button>
 
-        <p className="signup-prompt">
-          Don't have an account?
-          <a href="/registration" className="signup-link">
+        <p className="text-center text-gray-600 text-sm mt-6">
+          Don't have an account?{" "}
+          <a href="/registration" className="text-blue-600 hover:underline">
             Sign up
           </a>
         </p>

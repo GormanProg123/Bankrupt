@@ -14,10 +14,10 @@ export const LoggedNavBar = ({ username }: HeaderProps) => {
         <Logo />
 
         <div className="links flex flex-wrap justify-center md:justify-start gap-4 text-lg ml-10">
-          <a href="#" className="link text-lg  hover:font-bold">
+          <a href="/home" className="link text-lg  hover:font-bold">
             Home
           </a>
-          <a href="#" className="link text-lg  hover:font-bold">
+          <a href="/wallet" className="link text-lg  hover:font-bold">
             My Wallet
           </a>
           <a href="#" className="link text-lg  hover:font-bold">
@@ -40,5 +40,3 @@ export const LoggedNavBar = ({ username }: HeaderProps) => {
     </nav>
   );
 };
-
-
