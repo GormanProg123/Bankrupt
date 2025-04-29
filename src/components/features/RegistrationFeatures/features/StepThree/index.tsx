@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import logo from "../../../../../assets/logo.png";
-import "./styles/regstepthree.css";
-
 const STORAGE_KEY = "registrationStepThree";
 
 export const RegistrationStepThree = () => {
@@ -101,72 +99,75 @@ export const RegistrationStepThree = () => {
   };
 
   return (
-    <div className="page-container">
-      <div className="logo">
-        <img src={logo} alt="logo" className="logo-img" />
-        <p className="logo-text">Bankrupt</p>
+    <div className="flex flex-col justify-center items-center min-h-screen bg-gray-100 text-black">
+      <div className="flex items-center absolute top-4 left-4">
+        <img src={logo} alt="logo" className="w-8 h-8 mr-2" />
+        <p className="font-bold text-2xl">Bankrupt</p>
       </div>
 
-      <div className="form-container-step3">
-        <h1 className="form-title">Verification</h1>
-        <p className="form-description">
+      <div className="w-full max-w-2xl bg-white rounded-2xl shadow-md p-8 mt-24">
+        <h1 className="text-center text-2xl font-bold mb-2">Verification</h1>
+        <p className="text-center text-black text-sm mb-6">
           Confirm your agreement and complete verification
         </p>
 
-        <div className="nav-buttons">
+        <div className="flex justify-between bg-gray-200 p-2 rounded-2xl mb-6">
           <button
-            className="nav-button"
+            className="flex-1 p-2 rounded-2xl font-bold text-black bg-gray-200 hover:bg-gray-300 transition"
             onClick={() => navigate("/registration/step1")}
           >
             Personal Info
           </button>
           <button
-            className="nav-button"
+            className="flex-1 p-2 rounded-2xl font-bold text-black bg-gray-200 hover:bg-gray-300 transition"
             onClick={() => navigate("/registration/step2")}
           >
             Account Setup
           </button>
-          <button className="nav-button active">Verification</button>
+          <button className="flex-1 p-2 rounded-2xl font-bold text-black bg-white border border-gray-300">
+            Verification
+          </button>
         </div>
 
-        <div className="terms-container">
-          <p className="terms-item">
-            <strong>1. Account Usage:</strong> You agree to use your account for
-            lawful purposes only and in accordance with all applicable laws and
-            regulations.
-          </p>
-          <p className="terms-item">
-            <strong>2. Privacy Policy:</strong> Your use of our services is also
-            governed by our Privacy Policy, which can be found on our website.
-          </p>
-          <p className="terms-item">
-            <strong>3. Security:</strong> You are responsible for maintaining
-            the confidentiality of your account credentials and for all
-            activities that occur under your account.
-          </p>
-          <p className="terms-item">
-            <strong>4. Electronic Communications:</strong> By creating an
-            account, you consent to receive electronic communications from
-            Horizon Bank.
-          </p>
-          <p className="terms-item">
-            <strong>5. Fees and Charges:</strong> You agree to pay all fees and
-            charges associated with your account as outlined in our Fee
-            Schedule.
-          </p>
-          <p className="terms-item">
-            <strong>6. Termination:</strong> We reserve the right to terminate
-            your account at any time for any reason, including violation of
-            these terms.
-          </p>
+        <div className="bg-gray-100 border border-gray-300 rounded-2xl p-4 mb-6 max-h-64 overflow-y-auto">
+          {[
+            {
+              title: "1. Account Usage",
+              desc: "You agree to use your account for lawful purposes only and in accordance with all applicable laws and regulations.",
+            },
+            {
+              title: "2. Privacy Policy",
+              desc: "Your use of our services is also governed by our Privacy Policy, which can be found on our website.",
+            },
+            {
+              title: "3. Security",
+              desc: "You are responsible for maintaining the confidentiality of your account credentials and for all activities that occur under your account.",
+            },
+            {
+              title: "4. Electronic Communications",
+              desc: "By creating an account, you consent to receive electronic communications from Horizon Bank.",
+            },
+            {
+              title: "5. Fees and Charges",
+              desc: "You agree to pay all fees and charges associated with your account as outlined in our Fee Schedule.",
+            },
+            {
+              title: "6. Termination",
+              desc: "We reserve the right to terminate your account at any time for any reason, including violation of these terms.",
+            },
+          ].map((item, idx) => (
+            <p key={idx} className="mb-2">
+              <strong>{item.title}:</strong> {item.desc}
+            </p>
+          ))}
         </div>
 
-        <div className="checkbox-container">
-          <label className="checkbox-label">
+        <div className="flex flex-col space-y-4">
+          <label className="flex items-center">
             <input
               type="checkbox"
               name="agreed"
-              className="checkbox-input"
+              className="w-5 h-5 mr-2"
               checked={formData.agreed}
               onChange={handleChange}
               required
@@ -174,19 +175,22 @@ export const RegistrationStepThree = () => {
             I agree to the terms and conditions and privacy policy
           </label>
 
-          <label className="checkbox-label">
+          <label className="flex items-center">
             <input
               type="checkbox"
               name="marketing"
-              className="checkbox-input"
+              className="w-5 h-5 mr-2"
               onChange={handleChange}
             />
             I agree to receive marketing communications from Horizon Bank
           </label>
         </div>
 
-        <div className="verification-code-container">
-          <label htmlFor="verificationCode" className="verification-code-label">
+        <div className="mt-6">
+          <label
+            htmlFor="verificationCode"
+            className="block text-sm font-medium mb-2"
+          >
             Verification Code
           </label>
           <input
@@ -194,29 +198,35 @@ export const RegistrationStepThree = () => {
             id="verificationCode"
             name="verificationCode"
             value={formData.verificationCode}
-            className="verification-code-input"
             onChange={handleChange}
             required
+            className="w-full p-4 rounded-lg border border-gray-300 text-black bg-white"
           />
-          <p className="verification-info">
+          <p className="text-xs text-gray-500 mt-2">
             We've sent a verification code to your email address
           </p>
         </div>
 
-        <div className="buttons-container">
+        <div className="flex justify-between mt-6">
           <button
-            className="button button-back"
+            className="w-40 p-3 rounded-xl font-medium bg-white border border-gray-300 text-black hover:bg-gray-100 transition"
             onClick={() => navigate("/registration/step2")}
           >
             Back
           </button>
-          <button className="button button-submit" onClick={handleSubmit}>
+          <button
+            className="w-40 p-3 rounded-xl font-medium bg-black text-white border border-gray-300 hover:bg-white hover:text-black transition"
+            onClick={handleSubmit}
+          >
             Create Account
           </button>
         </div>
 
-        <p className="sign-in-link">
-          Already have an account? <a href="/login">Sign in</a>
+        <p className="text-center mt-6 text-sm text-gray-500">
+          Already have an account?{" "}
+          <a href="/login" className="text-blue-500 hover:underline">
+            Sign in
+          </a>
         </p>
       </div>
     </div>
