@@ -3,7 +3,9 @@ import { useNavigate } from "react-router-dom";
 import logo from "../../../../../assets/logo.png";
 const STORAGE_KEY = "registrationStepThree";
 
+
 export const RegistrationStepThree = () => {
+  const apiUrl = import.meta.env.VITE_API_URL;
   const [formData, setFormData] = useState({
     agreed: false,
     verificationCode: "",
@@ -66,7 +68,7 @@ export const RegistrationStepThree = () => {
 
     try {
       const response = await fetch(
-        "https://bankrupt-back.onrender.com/auth/verify-email",
+        `${apiUrl}/auth/verify-email`,
         {
           method: "POST",
           headers: {

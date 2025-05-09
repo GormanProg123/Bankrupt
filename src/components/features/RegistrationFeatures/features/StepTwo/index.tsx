@@ -14,6 +14,7 @@ interface SecurityQuestion {
 }
 
 export const RegistrationStepTwo = () => {
+  const apiUrl = import.meta.env.VITE_API_URL;
   const navigate = useNavigate();
 
   const [stepOneData, setStepOneData] = useState<StepOneData>({
@@ -97,7 +98,7 @@ export const RegistrationStepTwo = () => {
       security_questions: securityQuestions,
     };
 
-    fetch("https://bankrupt-back.onrender.com/auth/register", {
+    fetch(`${apiUrl}/auth/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
