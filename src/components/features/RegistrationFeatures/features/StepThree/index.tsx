@@ -65,16 +65,13 @@ export const RegistrationStepThree = () => {
     console.log("Registration Data to Send:", registrationData);
 
     try {
-      const response = await fetch(
-        "https://bankrupt-back.onrender.com/auth/verify-email",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(registrationData),
-        }
-      );
+      const response = await fetch("http://localhost:8000/auth/verify-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(registrationData),
+      });
 
       if (!response.ok) {
         const error = await response.json();
