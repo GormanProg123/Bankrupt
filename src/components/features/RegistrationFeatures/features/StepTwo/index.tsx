@@ -15,7 +15,6 @@ interface SecurityQuestion {
 }
 
 export const RegistrationStepTwo = () => {
-  const apiUrl = import.meta.env.VITE_API_URL;
   const navigate = useNavigate();
 
   const [stepOneData, setStepOneData] = useState<StepOneData>({
