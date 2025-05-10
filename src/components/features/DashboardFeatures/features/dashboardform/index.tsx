@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { FiCreditCard } from "react-icons/fi";
 import { VerticalHeader } from "../../../HomeFeatures/features/homeform/layout/vertheader";
+import { API_URL } from "../../../../api/baseUrl";
 import { useNavigate } from "react-router-dom";
 
 type CardData = {
@@ -25,7 +26,7 @@ export const DashboardForm = () => {
 
     if (!token) return;
 
-    fetch("http://localhost:8000/transfer/card", {
+    fetch(`${API_URL}/transfer/card`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -103,7 +104,6 @@ export const DashboardForm = () => {
               </div>
             ))}
 
-            {/* Apply Form */}
             <div className="border border-gray-300 rounded-xl p-8 w-96 bg-white shadow-sm">
               <div className="flex justify-center mb-5 text-gray-700 text-5xl">
                 <FiCreditCard />
@@ -125,7 +125,6 @@ export const DashboardForm = () => {
             </div>
           </div>
         ) : (
-          // If no card exists
           <div className="flex justify-center mt-12">
             <div className="border border-gray-300 rounded-xl p-8 w-full max-w-md bg-white shadow-sm">
               <div className="flex justify-center mb-5 text-gray-700 text-5xl">

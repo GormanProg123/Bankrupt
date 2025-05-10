@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import logo from "../../../../../assets/logo.png";
+import { API_URL } from "../../../../api/baseUrl";
 const STORAGE_KEY = "registrationStepThree";
 
 export const RegistrationStepThree = () => {
@@ -65,7 +66,7 @@ export const RegistrationStepThree = () => {
     console.log("Registration Data to Send:", registrationData);
 
     try {
-      const response = await fetch("http://localhost:8000/auth/verify-email", {
+      const response = await fetch(`${API_URL}/auth/verify-email`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

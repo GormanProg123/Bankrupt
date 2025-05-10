@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { FiCheck } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
+import { API_URL } from "../../../../../../api/baseUrl";
 
 export const CardCreateForm = () => {
   const navigate = useNavigate();
@@ -39,7 +40,7 @@ export const CardCreateForm = () => {
     console.log("Token:", token);
 
     try {
-      const res = await fetch("http://localhost:8000/cards/cards/create", {
+      const res = await fetch(`${API_URL}/cards/cards/create`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
