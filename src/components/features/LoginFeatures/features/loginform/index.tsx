@@ -1,27 +1,24 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import logo from "../../../../../assets/logo.png";
-const apiUrl = import.meta.env.VITE_API_URL;
+import { API_URL } from "../../../../api/baseUrl";
 
 export const LoginForm = () => {
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     try {
-      const response = await fetch(       
-        `${apiUrl}/auth/login`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ email, password }),
-        }
-      );
+      const response = await fetch(`${API_URL}/auth/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
 
       if (!response.ok) {
         const errorData = await response.json();
@@ -90,7 +87,7 @@ export const LoginForm = () => {
           type="submit"
           className="w-full py-3 bg-black text-white font-medium rounded-xl hover:bg-white hover:text-black hover:border hover:border-gray-600 transition"
         >
-          Sign In 
+          Sign In
         </button>
 
         <p className="text-center text-gray-600 text-sm mt-6">

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import logo from "../../../../../assets/logo.png";
 import { useNavigate } from "react-router-dom";
+import { API_URL } from "../../../../api/baseUrl";
 
 interface StepOneData {
   email: string;
@@ -14,7 +15,6 @@ interface SecurityQuestion {
 }
 
 export const RegistrationStepTwo = () => {
-  const apiUrl = import.meta.env.VITE_API_URL;
   const navigate = useNavigate();
 
   const [stepOneData, setStepOneData] = useState<StepOneData>({
@@ -98,7 +98,7 @@ export const RegistrationStepTwo = () => {
       security_questions: securityQuestions,
     };
 
-    fetch(`${apiUrl}/auth/register`, {
+    fetch(`${API_URL}/auth/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

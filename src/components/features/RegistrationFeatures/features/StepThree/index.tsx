@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import logo from "../../../../../assets/logo.png";
+import { API_URL } from "../../../../api/baseUrl";
 const STORAGE_KEY = "registrationStepThree";
 
-
 export const RegistrationStepThree = () => {
-  const apiUrl = import.meta.env.VITE_API_URL;
   const [formData, setFormData] = useState({
     agreed: false,
     verificationCode: "",
@@ -67,16 +66,13 @@ export const RegistrationStepThree = () => {
     console.log("Registration Data to Send:", registrationData);
 
     try {
-      const response = await fetch(
-        `${apiUrl}/auth/verify-email`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(registrationData),
-        }
-      );
+      const response = await fetch(`${API_URL}/auth/verify-email`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(registrationData),
+      });
 
       if (!response.ok) {
         const error = await response.json();

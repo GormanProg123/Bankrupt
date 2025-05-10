@@ -8,6 +8,9 @@ import { RegistrationStepThree } from "../components/features/RegistrationFeatur
 import { WalletPage } from "../components/pages/WalletPage";
 import { ProfilePage } from "../components/pages/Profile";
 import { HomePage } from "../components/pages/HomePage";
+import { DashboardPage } from "../components/pages/DashboardPage";
+import { CardCreatePage } from "../components/pages/CardCreatePage";
+
 export const AppRoutes = () => {
   return (
     <Routes>
@@ -20,6 +23,8 @@ export const AppRoutes = () => {
       <Route path="/wallet" element={<WalletPage />} />
       <Route path="/profile" element={<ProfilePage />} />
       <Route path="/home" element={<HomePage />} />
+      <Route path="/dashboard" element={<DashboardPage />} />
+      <Route path="/card-create" element={<CardCreatePage />} />
     </Routes>
   );
 };
