@@ -50,7 +50,6 @@ export const PassSecurity = () => {
                             />
                         </div>
                         <p className="last-chang text-gray-400">Receive notifications for new logins to your account</p>
-                        <div className="line w-full bg-gray-300 h-[2px] mt-3"></div>
                     </div>
 
                 </div>
