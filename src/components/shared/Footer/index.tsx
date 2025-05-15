@@ -2,8 +2,8 @@ import { Logo } from "../../atoms/Logo";
 
 const Footer = () => {
   return (
-    <footer className="footer border-top border-[2px] py-5 ">
-      <div className="container flex justify-between mx-auto">
+    <footer className="footer border-t-2 py-5 ">
+      <div className="container items-center flex justify-between mx-auto">
         <Logo />
 
         <p className="text-gray-600">

@@ -22,6 +22,8 @@ import {
   faMobile,
   faDesktop,
   faUser,
+  faDollar,
+  faCheck,
 } from "@fortawesome/free-solid-svg-icons";
 import "./styles/style.css";
 
@@ -48,7 +50,9 @@ interface IconProps {
     | "fa-bell"
     | "fa-mobile"
     | "fa-desktop"
-    | "fa-user";
+    | "fa-user"
+    | "fa-dollar"
+    | "fa-check";
   size?: "small" | "medium" | "large";
 }
 
@@ -75,6 +79,8 @@ const iconMap = {
   "fa-mobile":faMobile,
   "fa-desktop":faDesktop,
   "fa-user":faUser,
+  "fa-dollar":faDollar,
+  "fa-check":faCheck,
 };
 
 export const Icon = ({ iconClass, size = "large" }: IconProps) => {
