@@ -21,8 +21,8 @@ export const AppRoutes = () => {
       <Route path="/registration/step2" element={<RegistrationStepTwo />} />
       <Route path="/registration/step3" element={<RegistrationStepThree />} />
       <Route path="/wallet" element={<WalletPage />} />
-      <Route path="/profile" element={<ProfilePage />} />
-      <Route path="/transfer" element={<TransferPage />} />
+      <Route path="/profile" element={<ProfilePage />} />     
+      <Route path="/transfer" element={<TransferPage />} /> 
       <Route path="/home" element={<HomePage />} />
       <Route path="/dashboard" element={<DashboardPage />} />
       <Route path="/card-create" element={<CardCreatePage />} />

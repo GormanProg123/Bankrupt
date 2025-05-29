@@ -1,11 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
+import type { TransferData } from '../../../types/wallet'
 
-export interface TransferData {
-  from_card_number: string,
-  to_card_number:string,
-  amount:number ,
-}
 
 const initialState: TransferData = {
   from_card_number: '',
@@ -13,7 +9,7 @@ const initialState: TransferData = {
   amount:0,
 }
 
-export const TransferDataSlice = createSlice({
+export const transferDataSlice = createSlice({
   name: 'TransferData',
   initialState,
   reducers: {
@@ -28,7 +24,12 @@ export const TransferDataSlice = createSlice({
 })
 
 
-export const { transferDataUpdate } = TransferDataSlice.actions
+// export const { transferDataUpdate } = transferDataSlice.actions
 
-export default TransferDataSlice.reducer
+// export default transferDataSlice.reducer
+
+
+export const { transferDataUpdate } = transferDataSlice.actions
+
+export default transferDataSlice.reducer
 

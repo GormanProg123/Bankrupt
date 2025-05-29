@@ -1,12 +1,65 @@
-
 import {useDispatch } from 'react-redux'
-import { nextPage, previousPage  } from '../../../../app/features/transferPages/TransferPagesSlice'
+import { nextPage, previousPage  } from '../../../../app/features/TransferPages/TransferPagesSlice'
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../../app/store';
+import { TransferData } from '../../../../types/wallet';
+
+const getCookie = (name: string): string | null => {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) {
+    return parts.pop()?.split(';').shift() || null;
+  }
+  return null;
+};
+
+const apiUrl = import.meta.env.VITE_API_URL;
+
+type ApiResponse = {
+  message: string;
+};
+
 
 export const TransferStepTwo = () => {
+  const formData = useSelector((state:RootState) => state.transferDataUpdate)
   const dispatch = useDispatch();
+ let userCookie = getCookie('access_token');
+  console.log(apiUrl)
+  console.log(userCookie)
+  
+  const handleNext = async () => {
+    const data: TransferData = {
+      from_card_number: formData.from_card_number,
+      to_card_number: formData.to_card_number,
+      amount: formData.amount,
+    };
 
-  const handleNext = () => {
-    dispatch(nextPage())
+
+    try {
+      
+      let userCookie = getCookie('access_token');
+      const res = await fetch(`${apiUrl}/card/transfer`, {
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/json",
+          'Authorization': `Bearer ${userCookie}`,
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!res.ok) {
+        throw new Error('Network response was not ok');
+      } else {
+        dispatch(nextPage())
+      }
+
+      const result: ApiResponse = await res.json();
+      console.log(result);
+    } catch (error) {
+      console.error('Error:', error);
+    }
+ 
+
   };
   const handlePrevious = () => {
     dispatch(previousPage())
@@ -64,17 +117,17 @@ export const TransferStepTwo = () => {
                     
                     <div className="flex justify-between">
                       <div className="text-gray-500">From</div>
-                      <div className="font-medium">Savings (*7291)</div>
+                      <div className="font-medium">(*{formData.from_card_number.slice(-4)})</div>
                     </div>
                     
                     <div className="flex justify-between">
                       <div className="text-gray-500">To</div>
-                      <div className="font-medium">Checking (*4832)</div>
+                      <div className="font-medium">(*{formData.to_card_number.slice(-4)})</div>
                     </div>
                     
                     <div className="flex justify-between">
                       <div className="text-gray-500">Amount</div>
-                      <div className="font-medium">$0.00</div>
+                      <div className="font-medium">${formData.amount}</div>
                     </div>
                     
                     <div className="flex justify-between">
@@ -86,7 +139,7 @@ export const TransferStepTwo = () => {
                     
                     <div className="flex justify-between">
                       <div className="font-bold">Total</div>
-                      <div className="font-bold">$0.00</div>
+                      <div className="font-bold">${formData.amount}</div>
                     </div>
                   </div>
                 </div>
@@ -116,7 +169,7 @@ export const TransferStepTwo = () => {
                     onClick={handleNext}
                     className="w-48 py-2 cursor-pointer bg-black text-white font-medium rounded-lg hover:bg-white hover:text-black border hover:border-gray-600 transition-all"
                   >
-                    Continue 
+                    Send 
                   </button>
               </div>
               

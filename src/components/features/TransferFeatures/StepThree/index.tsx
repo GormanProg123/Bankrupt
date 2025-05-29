@@ -1,13 +1,15 @@
 import { Icon } from "../../../atoms/Icon"
-
+import { useDispatch } from 'react-redux'
 import { useNavigate } from "react-router-dom"
+import { previousPage } from "../../../../app/features/TransferPages/TransferPagesSlice"
 export const TransferStepThree = () => {
-
+    const dispatch = useDispatch();
     const randomNumber = Math.floor(Number(new Date())+ Math.random()*10)
     const navigate = useNavigate();
 
-    const handleToWallet = () => {
-        navigate('/wallet')
+    const handleNavigateToStart = () => {
+        dispatch(previousPage())
+        dispatch(previousPage())
     }
     return (
         <>
@@ -63,7 +65,7 @@ export const TransferStepThree = () => {
                         </div>
                         <div className="flex justify-between">
                             <p className="text-xl">Date & Time</p>
-                            <p className="text-xl">{`${new Intl.DateTimeFormat("en-US",{ month: "long" }).format(new Date())} ${new Date().getDate()} `} 2025 • {new Date().getHours()}:{new Date().getMinutes()}</p> //
+                            <p className="text-xl">{`${new Intl.DateTimeFormat("en-US",{ month: "long" }).format(new Date())} ${new Date().getDate()} `} 2025 • {new Date().getHours()}:{new Date().getMinutes() < 10 ? `0${new Date().getMinutes()}` : new Date().getMinutes()}</p>
                            
                            </div>
                            
@@ -80,7 +82,7 @@ export const TransferStepThree = () => {
 
                         <button
                             type="button"
-                            onClick={() => navigate('/transfer')}
+                            onClick={handleNavigateToStart}
                             className="px-4 cursor-pointer flex justify-center py-2 bg-black text-white font-medium rounded-lg hover:bg-white hover:text-black border hover:border-gray-600 transition-all"
                         >
                              <span className="mr-2"><Icon iconClass="fa-paper-plane"  size="small" /></span>   Make Another Transfer 
@@ -94,7 +96,7 @@ export const TransferStepThree = () => {
                  
                   <button
                     type="button"
-                    onClick={handleToWallet}
+                    onClick={() => navigate('/wallet')}
                     className="w-48 py-2 cursor-pointer items-center flex justify-center bg-black text-white font-medium rounded-lg hover:bg-white hover:text-black border hover:border-gray-600 transition-all"
                   >
                     Go to my wallet  <span className="pl-2"><Icon iconClass="fa-arrow-right" size="small" /></span> 
