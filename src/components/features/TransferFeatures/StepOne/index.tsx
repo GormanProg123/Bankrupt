@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { Icon } from "../../../atoms/Icon";
 import { useDispatch } from 'react-redux'
-import { nextPage  } from '../../../../app/features/TransferPages/TransferPagesSlice'
+import { selectPage  } from '../../../../app/features/TransferPages/TransferPagesSlice'
 import { transferDataUpdate } from "../../../../app/features/TransferData/TransferDataSlice";
 import { TransferData } from "../../../../types/wallet";
 
@@ -23,7 +23,7 @@ export const TransferStepOne = () => {
   const handleNext = () => {
     if (Object.values(formData).every((field) => field !== "") && (formData.from_card_number.length === 16 && formData.to_card_number.length === 16 && formData.from_card_number !== formData.to_card_number) && formData.amount > 0 ) {
       dispatch(transferDataUpdate(formData))
-      dispatch(nextPage())
+      dispatch(selectPage(2))
     } else {
       alert("Please fill in all the fields.");
     }

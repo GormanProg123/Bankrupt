@@ -1,5 +1,5 @@
 import {useDispatch } from 'react-redux'
-import { nextPage, previousPage  } from '../../../../app/features/TransferPages/TransferPagesSlice'
+import { selectPage  } from '../../../../app/features/TransferPages/TransferPagesSlice'
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../../app/store';
 import { TransferData } from '../../../../types/wallet';
@@ -13,7 +13,7 @@ const getCookie = (name: string): string | null => {
   return null;
 };
 
-const apiUrl = import.meta.env.VITE_API_URL;
+
 
 type ApiResponse = {
   message: string;
@@ -21,11 +21,10 @@ type ApiResponse = {
 
 
 export const TransferStepTwo = () => {
+  const apiUrl = import.meta.env.VITE_API_URL;
   const formData = useSelector((state:RootState) => state.transferDataUpdate)
   const dispatch = useDispatch();
- let userCookie = getCookie('access_token');
-  console.log(apiUrl)
-  console.log(userCookie)
+  
   
   const handleNext = async () => {
     const data: TransferData = {
@@ -47,10 +46,13 @@ export const TransferStepTwo = () => {
         body: JSON.stringify(data),
       });
 
-      if (!res.ok) {
+      if (!res.ok) {  
+        dispatch(selectPage(404))
+        console.log(res.ok)
         throw new Error('Network response was not ok');
+    
       } else {
-        dispatch(nextPage())
+        dispatch(selectPage(3))
       }
 
       const result: ApiResponse = await res.json();
@@ -60,9 +62,9 @@ export const TransferStepTwo = () => {
     }
  
 
-  };
+  };    
   const handlePrevious = () => {
-    dispatch(previousPage())
+    dispatch(selectPage(1))
   }
   {/* 'bg-gray-800 text-white border-gray-800' : 'bg-white text-gray-400 border-gray-300' */}
  {/* 'bg-gray-800' : 'bg-gray-300' */}

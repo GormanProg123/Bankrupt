@@ -3,6 +3,7 @@ import { LoggedNavBar } from "../../shared/LoggedNavBar";
 import { TransferStepOne } from "./StepOne";
 import { TransferStepTwo } from "./StepTwo";
 import { TransferStepThree } from "./StepThree";
+import { TransferError } from "./TransferError";
 import Footer from "../../shared/Footer";
 import type { RootState } from '../../../app/store'
 import { useSelector } from 'react-redux'
@@ -21,6 +22,7 @@ export const TransferFeatures = () => {
                 {currentStep === 1 && <TransferStepOne />}
                 {currentStep === 2 && <TransferStepTwo />}
                 {currentStep === 3 && <TransferStepThree />}
+                {currentStep === 404 && <TransferError />}
             </div>
             <Footer />
         </div>

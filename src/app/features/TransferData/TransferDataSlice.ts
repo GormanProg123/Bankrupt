@@ -23,12 +23,7 @@ export const transferDataSlice = createSlice({
   },
 })
 
-
-// export const { transferDataUpdate } = transferDataSlice.actions
-
-// export default transferDataSlice.reducer
-
-
+  
 export const { transferDataUpdate } = transferDataSlice.actions
 
 export default transferDataSlice.reducer

@@ -11,6 +11,8 @@ import { HomePage } from "../components/pages/HomePage";
 import { DashboardPage } from "../components/pages/DashboardPage";
 import { CardCreatePage } from "../components/pages/CardCreatePage";
 import { TransferPage } from "../components/pages/TransferPage";
+import { TransferError } from "../components/features/TransferFeatures/TransferError";
+
 export const AppRoutes = () => {
   return (
     <Routes>
@@ -26,6 +28,7 @@ export const AppRoutes = () => {
       <Route path="/home" element={<HomePage />} />
       <Route path="/dashboard" element={<DashboardPage />} />
       <Route path="/card-create" element={<CardCreatePage />} />
+      <Route path="/transfer-error" element={<TransferError />} />
     </Routes>
   );
 };

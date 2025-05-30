@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
+import type { PayloadAction } from '@reduxjs/toolkit'
 
 export interface CurrentPage {
-  value: number
+  value: number 
 }
 
 const initialState: CurrentPage = {
@@ -12,22 +13,15 @@ export const transferPagesSlice = createSlice({
   name: 'transferPages',
   initialState,
   reducers: {
-    nextPage: (state) => {
-        if(state.value < 3){
-            state.value += 1
-        }
-    },
-    previousPage: (state) => {
-        if(state.value > 1){
-            state.value -= 1
-        }
-      
+    selectPage: (state, action: PayloadAction<number>) => {
+        state.value = action.payload
+        console.log(action.payload)
     },
   },
 })
 
 
-export const { nextPage, previousPage } = transferPagesSlice.actions
+export const { selectPage } = transferPagesSlice.actions
 
 export default transferPagesSlice.reducer
 
