@@ -26,6 +26,9 @@ import {
   faDollar,
   faCheck,
   faXmark,
+  faBars,
+  faArrowsLeftRight,
+  faHouse,
 } from "@fortawesome/free-solid-svg-icons";
 import "./styles/style.css";
 
@@ -56,7 +59,10 @@ interface IconProps {
     | "fa-user"
     | "fa-dollar"
     | "fa-check"
-    | "fa-xmark";
+    | "fa-xmark"
+    | "fa-bars"
+    | "fa-arrows-left-right"
+    | "fa-house";
   size?: "small" | "medium" | "large";
 }
 
@@ -87,6 +93,9 @@ const iconMap = {
   "fa-dollar":faDollar,
   "fa-check":faCheck,
   "fa-xmark":faXmark,
+  "fa-bars":faBars,
+  "fa-house":faHouse,
+  "fa-arrows-left-right":faArrowsLeftRight,
 };
 
 export const Icon = ({ iconClass, size = "large" }: IconProps) => {
