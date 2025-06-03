@@ -10,6 +10,8 @@ import { ProfilePage } from "../components/pages/Profile";
 import { HomePage } from "../components/pages/HomePage";
 import { DashboardPage } from "../components/pages/DashboardPage";
 import { CardCreatePage } from "../components/pages/CardCreatePage";
+import { ResetPasswordPage } from "../components/pages/ResetPasswordPage";
+import { ResetPasswordConfirmPage } from "../components/pages/ResetPasswordConfirmPage";
 
 export const AppRoutes = () => {
   return (
@@ -25,6 +27,8 @@ export const AppRoutes = () => {
       <Route path="/home" element={<HomePage />} />
       <Route path="/dashboard" element={<DashboardPage />} />
       <Route path="/card-create" element={<CardCreatePage />} />
+      <Route path="/password-reset" element={<ResetPasswordPage />} />
+      <Route path="/reset" element={<ResetPasswordConfirmPage />} />
     </Routes>
   );
 };
