@@ -14,6 +14,7 @@ import {
   faPlus,
   faWallet,
   faArrowRight,
+  faArrowLeft,
   faPhone,  
   faEnvelope,
   faKey,
@@ -22,6 +23,12 @@ import {
   faMobile,
   faDesktop,
   faUser,
+  faDollar,
+  faCheck,
+  faXmark,
+  faBars,
+  faArrowsLeftRight,
+  faHouse,
 } from "@fortawesome/free-solid-svg-icons";
 import "./styles/style.css";
 
@@ -41,6 +48,7 @@ interface IconProps {
     | "fa-plus"
     | "fa-wallet"
     | "fa-arrow-right"
+    | "fa-arrow-left"
     | "fa-phone"
     | "fa-envelope"
     | "fa-key"
@@ -48,7 +56,13 @@ interface IconProps {
     | "fa-bell"
     | "fa-mobile"
     | "fa-desktop"
-    | "fa-user";
+    | "fa-user"
+    | "fa-dollar"
+    | "fa-check"
+    | "fa-xmark"
+    | "fa-bars"
+    | "fa-arrows-left-right"
+    | "fa-house";
   size?: "small" | "medium" | "large";
 }
 
@@ -67,6 +81,7 @@ const iconMap = {
   "fa-plus": faPlus,
   "fa-wallet":faWallet,
   "fa-arrow-right":faArrowRight,
+  "fa-arrow-left":faArrowLeft,
   "fa-phone":faPhone,
   "fa-envelope":faEnvelope,
   "fa-key":faKey,
@@ -75,6 +90,12 @@ const iconMap = {
   "fa-mobile":faMobile,
   "fa-desktop":faDesktop,
   "fa-user":faUser,
+  "fa-dollar":faDollar,
+  "fa-check":faCheck,
+  "fa-xmark":faXmark,
+  "fa-bars":faBars,
+  "fa-house":faHouse,
+  "fa-arrows-left-right":faArrowsLeftRight,
 };
 
 export const Icon = ({ iconClass, size = "large" }: IconProps) => {
