@@ -36,7 +36,7 @@ export const VerticalHeader = () => {
           <span className="font-normal">Dashboard</span>
         </a>
         <a
-          href="/transfers"
+          href="/transfer"
           className="flex items-center gap-4 text-lg cursor-pointer hover:bg-gray-200 p-2 rounded-lg hover:scale-105 transition-all"
         >
           <FaPaperPlane />
