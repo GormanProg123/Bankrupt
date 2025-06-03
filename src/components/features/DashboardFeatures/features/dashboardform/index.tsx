@@ -19,18 +19,9 @@ export const DashboardForm = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const token = document.cookie
-      .split("; ")
-      .find((row) => row.startsWith("access_token="))
-      ?.split("=")[1];
-
-    if (!token) return;
-
-    fetch(`${API_URL}/transfer/card`, {
+    fetch(`${API_URL}/card`, {
       method: "GET",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+      credentials: "include",
     })
       .then((res) => (res.ok ? res.json() : null))
       .then((data) => {

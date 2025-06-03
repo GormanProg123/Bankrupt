@@ -1,16 +1,14 @@
 import { BrowserRouter } from "react-router-dom";
 import { AppRoutes } from "./routes/routes";
-import { store } from './app/store'
-import { Provider } from 'react-redux'
+import { AuthProvider } from "./context/AuthContext";
 
 function App() {
-
   return (
-    <Provider store={store}>
-      <BrowserRouter>
+    <BrowserRouter>
+      <AuthProvider>
         <AppRoutes />
-      </BrowserRouter>
-    </Provider>
+      </AuthProvider>
+    </BrowserRouter>
   );
 }
 

@@ -12,6 +12,8 @@ import { DashboardPage } from "../components/pages/DashboardPage";
 import { CardCreatePage } from "../components/pages/CardCreatePage";
 import { TransferPage } from "../components/pages/TransferPage";
 import { TransferError } from "../components/features/TransferFeatures/TransferError";
+import { ResetPasswordPage } from "../components/pages/ResetPasswordPage";
+import { ResetPasswordConfirmPage } from "../components/pages/ResetPasswordConfirmPage";
 
 export const AppRoutes = () => {
   return (
@@ -23,11 +25,13 @@ export const AppRoutes = () => {
       <Route path="/registration/step2" element={<RegistrationStepTwo />} />
       <Route path="/registration/step3" element={<RegistrationStepThree />} />
       <Route path="/wallet" element={<WalletPage />} />
-      <Route path="/profile" element={<ProfilePage />} />     
-      <Route path="/transfer" element={<TransferPage />} /> 
+      <Route path="/profile" element={<ProfilePage />} />
+      <Route path="/transfer" element={<TransferPage />} />
       <Route path="/home" element={<HomePage />} />
       <Route path="/dashboard" element={<DashboardPage />} />
       <Route path="/card-create" element={<CardCreatePage />} />
+      <Route path="/password-reset" element={<ResetPasswordPage />} />
+      <Route path="/reset" element={<ResetPasswordConfirmPage />} />
       <Route path="/transfer-error" element={<TransferError />} />
     </Routes>
   );

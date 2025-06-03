@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import {
   FaHouse,
   FaCreditCard,
@@ -8,24 +7,11 @@ import {
   FaUser,
 } from "react-icons/fa6";
 import logo from "../../../../../../../assets/logo.png";
+import { useAuth } from "../../../../../../../context/AuthContext";
 
 export const VerticalHeader = () => {
-  const [userName, setUserName] = useState<string>("");
-
-  useEffect(() => {
-    // Проверка, что данные в localStorage не пустые и могут быть распарсены
-    const savedData = localStorage.getItem("registrationData");
-    if (savedData) {
-      try {
-        const parsedData = JSON.parse(savedData);
-        if (parsedData.first_name && parsedData.last_name) {
-          setUserName(`${parsedData.first_name} ${parsedData.last_name}`);
-        }
-      } catch (error) {
-        console.error("Ошибка при парсинге данных из localStorage", error);
-      }
-    }
-  }, []);
+  const { user } = useAuth();
+  const userName = user ? `${user.first_name} ${user.last_name}` : "John Doe";
 
   return (
     <div className="flex flex-col justify-between h-screen w-64 border-r-2 border-black relative p-4">
@@ -77,7 +63,7 @@ export const VerticalHeader = () => {
         className="flex items-center gap-4 mb-4 cursor-pointer hover:bg-gray-200 p-2 rounded-lg hover:scale-105 transition-all"
       >
         <FaUser />
-        <span className="font-normal">{userName || "John Doe"}</span>
+        <span className="font-normal">{userName}</span>
       </a>
     </div>
   );

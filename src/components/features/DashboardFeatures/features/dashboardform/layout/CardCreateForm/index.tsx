@@ -20,13 +20,8 @@ export const CardCreateForm = () => {
   };
 
   const handleSubmit = async () => {
-    const token = document.cookie
-      .split("; ")
-      .find((row) => row.startsWith("access_token="))
-      ?.split("=")[1];
-
     const payload = {
-      design: selectedDesign,
+      design: selectedDesign ? { id: selectedDesign } : null,
       name_on_card: nameOnCard,
       daily_limit: transactionLimit,
       features: {
@@ -37,15 +32,13 @@ export const CardCreateForm = () => {
       },
     };
 
-    console.log("Token:", token);
-
     try {
-      const res = await fetch(`${API_URL}/cards/cards/create`, {
+      const res = await fetch(`${API_URL}/card/create`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
         },
+        credentials: "include",
         body: JSON.stringify(payload),
       });
 
@@ -54,7 +47,6 @@ export const CardCreateForm = () => {
       navigate("/dashboard");
     } catch (err) {
       console.error(err);
-      console.log("Token:", token);
       alert("Error creating card");
     }
   };

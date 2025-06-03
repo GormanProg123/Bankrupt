@@ -1,35 +1,23 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { FaEye, FaEyeSlash } from "react-icons/fa6";
 import logo from "../../../../../assets/logo.png";
-import { API_URL } from "../../../../api/baseUrl";
+import { loginRequest } from "../../../../../utils/api";
 
 export const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     try {
-      const response = await fetch(`${API_URL}/auth/login`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.detail || "Login failed");
-      }
-
-      const data = await response.json();
+      const data = await loginRequest(email, password);
       localStorage.setItem("user", JSON.stringify(data.user));
-      document.cookie = `access_token=${data.access_token}; path=/; secure; samesite=strict`;
       navigate("/home");
-    } catch (error: unknown) {
+    } catch (error) {
       console.log("Login failed: " + error);
     }
   };
@@ -64,23 +52,34 @@ export const LoginForm = () => {
           />
         </div>
 
-        <div className="mb-6">
+        <div className="mb-6 relative">
           <div className="flex justify-between items-center mb-2">
             <label htmlFor="password" className="text-sm font-medium">
               Password
             </label>
-            <a href="#" className="text-sm text-blue-600 hover:underline">
+            <a
+              href="/password-reset"
+              className="text-sm text-blue-600 hover:underline"
+            >
               Forgot Password?
             </a>
           </div>
           <input
-            type="password"
+            type={showPassword ? "text" : "password"}
             id="password"
             required
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full p-3 rounded-xl border border-gray-300 bg-white text-black focus:outline-none focus:ring-2 focus:ring-black"
+            className="w-full p-3 pr-10 rounded-xl border border-gray-300 bg-white text-black focus:outline-none focus:ring-2 focus:ring-black"
           />
+          <button
+            type="button"
+            onClick={() => setShowPassword(!showPassword)}
+            className="absolute top-11 right-3 text-gray-600 hover:text-black"
+            tabIndex={-1}
+          >
+            {showPassword ? <FaEyeSlash /> : <FaEye />}
+          </button>
         </div>
 
         <button
