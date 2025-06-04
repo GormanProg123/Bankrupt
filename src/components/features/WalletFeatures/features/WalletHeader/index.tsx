@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+
 import { Icon } from "../../../../atoms/Icon";
 import WalletCardsBlock from "./WalletCardsBlock";
 import { API_URL } from "../../../../api/baseUrl";

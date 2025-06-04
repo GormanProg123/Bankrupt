@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Transaction, FilterType } from '../../../../../../types/types';
 import { RootState } from '../../../../../../app/store';
-import { UseDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 
 
@@ -24,7 +24,7 @@ const TransactionTable = () => {
 
 
   
-  const [filteredTransactions, setFilteredTransactions] = useState<Transaction[]>([]);
+  // const [filteredTransactions, setFilteredTransactions] = useState<Transaction[]>([]);
   const [filter, setFilter] = useState<FilterType>('all');
   const [currentPage, setCurrentPage] = useState(1);
   const transactionsPerPage = 5;
@@ -54,9 +54,9 @@ const TransactionTable = () => {
     setFilter(filterType);
   };
 
-  const indexOfLastTransaction = currentPage * transactionsPerPage;
-  const indexOfFirstTransaction = indexOfLastTransaction - transactionsPerPage;
-  const currentTransactions = filteredTransactions.slice(indexOfFirstTransaction, indexOfLastTransaction);
+  // const indexOfLastTransaction = currentPage * transactionsPerPage;
+  // const indexOfFirstTransaction = indexOfLastTransaction - transactionsPerPage;
+  // const currentTransactions = filteredTransactions.slice(indexOfFirstTransaction, indexOfLastTransaction);
   const totalPages = Math.ceil(tran.length / transactionsPerPage);
 
 
@@ -137,7 +137,7 @@ const TransactionTable = () => {
         <button 
           className="pagination-next bg-black text-white py-2 px-5 rounded font-semibold border-gray-900 border hover:border-gray-200"
           onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
-          disabled={currentPage === totalPages || filteredTransactions.length === 0}
+          disabled={currentPage === totalPages || tran.length === 0}
         >
           Next
         </button>

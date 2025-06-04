@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { CurrentCard } from '../../../types/types'
-import { CardHistory } from '../../../types/types'
 
 const initialState:CurrentCard = {
     currentCardId:1,

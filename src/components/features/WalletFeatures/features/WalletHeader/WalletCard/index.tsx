@@ -2,8 +2,7 @@ import { Icon } from "../../../../../atoms/Icon";
 import { splitNumber } from "../../../../../../functions/functions";
 import { useDispatch } from "react-redux";
 import { currentCard } from "../../../../../../app/features/WalletCard/WalletCardSlice";
-import { useEffect, useState } from "react";
-import { CurrentCard } from "../../../../../../types/types";
+import { useEffect } from "react";
 import { API_URL } from "../../../../../api/baseUrl";
 
 
