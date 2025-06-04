@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import { selectPage } from "../../../../app/features/TransferPages/TransferPagesSlice";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../app/store";
-import { TransferData } from "../../../../types/wallet";
+import { TransferData } from "../../../../types/types";
 
 type ApiResponse = {
   message: string;
@@ -26,7 +26,7 @@ export const TransferStepTwo = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        credentials: "include", // важно, чтобы cookie отправлялись
+        credentials: "include", 
         body: JSON.stringify(data),
       });
 

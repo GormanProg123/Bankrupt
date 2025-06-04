@@ -3,7 +3,7 @@ import { Icon } from "../../../atoms/Icon";
 import { useDispatch } from 'react-redux'
 import { selectPage  } from '../../../../app/features/TransferPages/TransferPagesSlice'
 import { transferDataUpdate } from "../../../../app/features/TransferData/TransferDataSlice";
-import { TransferData } from "../../../../types/wallet";
+import { TransferData } from "../../../../types/types";
 
 export const TransferStepOne = () => {
 

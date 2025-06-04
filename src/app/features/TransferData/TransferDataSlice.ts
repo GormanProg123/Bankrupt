@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
-import type { TransferData } from '../../../types/wallet'
+import type { TransferData } from '../../../types/types'
 
 
 const initialState: TransferData = {

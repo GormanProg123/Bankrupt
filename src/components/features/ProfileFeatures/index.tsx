@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { FilterTypeProfile } from '../../../types/wallet';
+import { FilterTypeProfile } from '../../../types/types';
 import {LoggedNavBar} from '../../shared/LoggedNavBar/index'
 import {UserProfile} from './features/UserProfile'
 import {Security} from './features/Security'

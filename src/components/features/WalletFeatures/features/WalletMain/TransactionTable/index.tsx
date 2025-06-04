@@ -1,12 +1,29 @@
 import { useState, useEffect } from 'react';
+import { Transaction, FilterType } from '../../../../../../types/types';
+import { RootState } from '../../../../../../app/store';
+import { UseDispatch, useSelector } from 'react-redux';
 
-import { Transaction, FilterType } from '../../../../../../types/wallet';
 
-interface TransactionTableProps {
-  transactions: Transaction[];
-}
 
-const TransactionTable = ({ transactions }: TransactionTableProps) => {
+  
+const TransactionTable = () => {
+  
+
+
+  const transactions = useSelector((state:RootState) => state.walletCardSlice.currentCardHistory)
+  const [tran,setTran] = useState<Transaction[]>([])
+
+  useEffect(() => {
+    if (Array.isArray(transactions?.history)) {
+      setTran([...transactions.history]);
+    } else {
+      setTran([]);
+    }
+  }, [transactions]);
+
+
+
+  
   const [filteredTransactions, setFilteredTransactions] = useState<Transaction[]>([]);
   const [filter, setFilter] = useState<FilterType>('all');
   const [currentPage, setCurrentPage] = useState(1);
@@ -14,20 +31,24 @@ const TransactionTable = ({ transactions }: TransactionTableProps) => {
 
   useEffect(() => {
     applyFilter(filter);
-  }, [filter, transactions]);
+  }, [filter]);
 
   const applyFilter = (filterType: FilterType) => {
-    let filtered = [...transactions];
+    if (!transactions || !Array.isArray(transactions.history)) return;
+
+    let filtered = [...transactions.history];
     
-    if (filterType === 'income') {
-      filtered = transactions.filter(tx => tx.amount.startsWith('+'));
-    } else if (filterType === 'expense') {
-      filtered = transactions.filter(tx => tx.amount.startsWith('-'));
+    if (filterType === 'in') {
+      filtered = transactions.history.filter(tx => tx.direction === 'in');
+    } else if (filterType === 'out') {
+      filtered = transactions.history.filter(tx => tx.direction === 'out');
     }
     
-    setFilteredTransactions(filtered);
+    setTran(filtered);
     setCurrentPage(1);
   };
+
+   
 
   const handleFilterClick = (filterType: FilterType) => {
     setFilter(filterType);
@@ -36,7 +57,11 @@ const TransactionTable = ({ transactions }: TransactionTableProps) => {
   const indexOfLastTransaction = currentPage * transactionsPerPage;
   const indexOfFirstTransaction = indexOfLastTransaction - transactionsPerPage;
   const currentTransactions = filteredTransactions.slice(indexOfFirstTransaction, indexOfLastTransaction);
-  const totalPages = Math.ceil(filteredTransactions.length / transactionsPerPage);
+  const totalPages = Math.ceil(tran.length / transactionsPerPage);
+
+
+
+  
 
   return (
     <>
@@ -48,14 +73,14 @@ const TransactionTable = ({ transactions }: TransactionTableProps) => {
           All
         </button>
         <button 
-          className={`option w-1/3 rounded-xl py-2 mx-2 ${filter === 'income' ? 'bg-white' : ''}`}
-          onClick={() => handleFilterClick('income')}
+          className={`option w-1/3 rounded-xl py-2 mx-2 ${filter === 'in' ? 'bg-white' : ''}`}
+          onClick={() => handleFilterClick('in')}
         >
           Income
         </button>
         <button 
-          className={`option w-1/3 rounded-xl py-2 mx-2 ${filter === 'expense' ? 'bg-white' : ''}`}
-          onClick={() => handleFilterClick('expense')}
+          className={`option w-1/3 rounded-xl py-2 mx-2 ${filter === 'out' ? 'bg-white' : ''}`}
+          onClick={() => handleFilterClick('out')}
         >
           Expense
         </button>
@@ -66,23 +91,31 @@ const TransactionTable = ({ transactions }: TransactionTableProps) => {
           <thead className="bg-gray-50 font-medium">
             <tr>
               <th className="px-6 py-4">Date</th>
-              <th className="px-6 py-4">Description</th>
+              <th className="px-6 py-4">From</th>
+              <th className="px-6 py-4">To</th>
+              
+              <th className="px-6 py-4">Direction</th>
               <th className="px-6 py-4">Category</th>
               <th className="px-6 py-4">Amount</th>
-              <th className="px-6 py-4">Actions</th>
+             
             </tr>
           </thead>
           <tbody>
-            {currentTransactions.map((tx, index) => {
-              const amountColor = tx.amount.startsWith('+') ? 'text-green-600' : 'text-red-600';
-              
+            {tran.map((tx:any, index) => {
+              const amountColor = tx.direction === "in" ? 'text-green-600' : 'text-red-600';
+              const time = new Date(tx.time)
               return (
                 <tr key={index} className="border-t hover:bg-gray-50">
-                  <td className="px-6 py-3 whitespace-nowrap">{tx.date}</td>
-                  <td className="px-6 py-3">{tx.description}</td>
-                  <td className="px-6 py-3">{tx.category}</td>
-                  <td className={`px-6 py-3 font-medium ${amountColor}`}>{tx.amount}</td>
-                  <td className="px-6 py-3 text-gray-400 text-lg">⋯</td>
+                  
+                  <td className="px-6 py-3 whitespace-nowrap">{`${new Intl.DateTimeFormat("en-US",{ month: "long" }).format(time)} ${time.getDate()} `} {time.getHours()}:{time.getMinutes() < 10 ? `0${time.getMinutes()}` : time.getMinutes()}</td>
+      
+                  <td className="px-6 py-3">{tx.from_card_number}</td>
+                  <td className="px-6 py-3">{tx.to_card_number}</td>
+
+                  <td className="px-6 py-3">{tx.direction}</td>
+                  <td className="px-6 py-3">{tx.transfer_type}</td>
+                  <td className={`px-6 py-3 font-medium ${amountColor}`}>{amountColor === "text-green-600" ? "+" : "-"}{tx.amount}</td>
+                  
                 </tr>
               );
             })}
@@ -108,7 +141,7 @@ const TransactionTable = ({ transactions }: TransactionTableProps) => {
         >
           Next
         </button>
-      </div>
+      </div>  
     </>
   );
 };
