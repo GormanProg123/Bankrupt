@@ -11,7 +11,7 @@ export const fetchUserData = async () => {
 
     return await response.json();
   } catch (error) {
-    console.error("Ошибка при получении данных пользователя:", error);
+    console.error("Error when receiving user data:", error);
     return null;
   }
 };
@@ -36,7 +36,7 @@ export const resetPasswordRequest = async (
 
     return true;
   } catch (error) {
-    console.error("Ошибка при сбросе пароля:", error);
+    console.error("Error when resetting the password:", error);
     throw error;
   }
 };
@@ -60,30 +60,52 @@ export const resetPasswordConfirm = async (
 
     return true;
   } catch (error) {
-    console.error("Ошибка при подтверждении сброса пароля:", error);
+    console.error("Error confirming password reset:", error);
     throw error;
   }
 };
 
 export const loginRequest = async (email: string, password: string) => {
   try {
-    const response = await fetch(`${API_URL}/auth/login`, {
+    const response = await fetch(`${API_URL}/auth/2fa/request`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      credentials: "include",
       body: JSON.stringify({ email, password }),
     });
 
     if (!response.ok) {
       const errorData = await response.json();
-      throw new Error(errorData.detail || "Login failed");
+      throw new Error(errorData.detail || "2FA request failed");
     }
 
     return await response.json();
   } catch (error) {
-    console.error("Ошибка при входе в систему:", error);
+    console.error("Request error 2FA:", error);
+    throw error;
+  }
+};
+
+export const confirm2FARequest = async (email: string, twofa_code: string) => {
+  try {
+    const response = await fetch(`${API_URL}/auth/2fa/confirm`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+      body: JSON.stringify({ email, twofa_code }),
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.detail || "2FA confirmation failed");
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error("Error during confirmation 2FA:", error);
     throw error;
   }
 };

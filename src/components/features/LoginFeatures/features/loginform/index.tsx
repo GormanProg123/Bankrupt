@@ -14,9 +14,8 @@ export const LoginForm = () => {
     e.preventDefault();
 
     try {
-      const data = await loginRequest(email, password);
-      localStorage.setItem("user", JSON.stringify(data.user));
-      navigate("/home");
+      await loginRequest(email, password);
+      navigate("/2fa-confirm", { state: { email } });
     } catch (error) {
       console.log("Login failed: " + error);
     }
