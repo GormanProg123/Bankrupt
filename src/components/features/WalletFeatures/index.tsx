@@ -10,12 +10,8 @@ export const Wallet = () => {
     <div className="min-h-screen flex flex-col">
       <LoggedNavBar username="John Doe" />
       <WalletHeader />
-      
-
       <WalletMain  />
-      
       <Footer />
-      
     </div>
   );
 };

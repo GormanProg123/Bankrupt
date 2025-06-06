@@ -38,3 +38,8 @@ export interface CardHistory {
   history: Transaction[];
   
 }
+
+export interface ITriggerUpdate {
+    cardsUpdate:boolean,
+    savingsUpdate:boolean,
+}
