@@ -21,6 +21,7 @@ export const WalletCardSlice = createSlice({
        state.currentCardHistory = action.payload.currentCardHistory
        console.log(action.payload)
     },
+
   },
 })
 
