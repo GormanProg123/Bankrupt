@@ -3,7 +3,7 @@ import { API_URL } from '../../../../../../../api/baseUrl';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../../../../../../app/store';
 import { savingsModalState } from '../../../../../../../../app/features/SavingsGoalModal/SavingsGoalModalSlice';
-import { savingsUpdate } from '../../../../../../../../app/features/TriggerUpdate/TriggerUpdate';
+import { savingsUpdate } from '../../../../../../../../app/features/TriggerUpdate/TriggerUpdateSlice';
 
 const ModalGoal = () => {
   const [goalName, setGoalName] = useState<string>();

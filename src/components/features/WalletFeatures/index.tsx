@@ -8,7 +8,7 @@ export const Wallet = () => {
   
   return (
     <div className="min-h-screen flex flex-col">
-      <LoggedNavBar username="John Doe" />
+      <LoggedNavBar />
       <WalletHeader />
       <WalletMain  />
       <Footer />
