@@ -14,7 +14,7 @@ export const VerticalHeader = () => {
   const userName = user ? `${user.first_name} ${user.last_name}` : "John Doe";
 
   return (
-    <div className="flex flex-col justify-between h-screen w-64 border-r-2 border-black relative p-4">
+    <div className="flex flex-col justify-between w-64 border-r-2 border-black relative p-4 min-h-screen">
       <div className="flex items-center absolute top-4 left-4">
         <img src={logo} alt="logo" className="w-8 h-8 mr-2" />
         <p className="font-bold text-2xl">Bankrupt</p>
@@ -60,7 +60,7 @@ export const VerticalHeader = () => {
 
       <a
         href="/profile"
-        className="flex items-center gap-4 mb-4 cursor-pointer hover:bg-gray-200 p-2 rounded-lg hover:scale-105 transition-all"
+        className="flex items-center gap-4 mt-10 cursor-pointer hover:bg-gray-200 p-2 rounded-lg hover:scale-105 transition-all"
       >
         <FaUser />
         <span className="font-normal">{userName}</span>

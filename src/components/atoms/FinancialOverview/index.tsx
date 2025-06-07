@@ -45,7 +45,7 @@ export const FinancialOverview = () => {
   }, []);
 
   return (
-    <div className="bg-white rounded-xl p-6 mt-10 shadow border border-gray-200 w-full max-w-4xl">
+    <div className="bg-white rounded-xl p-6 mt-10 shadow border border-gray-200 w-full ">
       <h2 className="text-xl font-bold text-black mb-1">Financial Overview</h2>
       <p className="text-gray-600 mb-6">
         Your account balances over the last 6 months

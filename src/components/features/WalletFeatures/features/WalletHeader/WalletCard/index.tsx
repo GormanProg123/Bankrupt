@@ -5,7 +5,6 @@ import { currentCard } from "../../../../../../app/features/WalletCard/WalletCar
 import { useEffect } from "react";
 import { API_URL } from "../../../../../api/baseUrl";
 
-
 type IconClassType =
   | "fa-credit-card"
   | "fa-chart-column"
@@ -27,85 +26,82 @@ interface WalletCardProps {
   icon: IconClassType;
   additionalClasses?: string;
   iconWrapper?: boolean;
-  number?:string;
-  cardId?:number;
+  number?: string;
+  cardId?: number;
 }
 
-const WalletCard =  ({
+const WalletCard = ({
   amount,
   icon,
   additionalClasses = "",
   iconWrapper = false,
-  number ='',
+  number = '',
   cardId = 0,
-}: WalletCardProps) =>  {
+}: WalletCardProps) => {
   let dispatch = useDispatch();
-
-
-
+  
 
   let num = "";
-  if(number){
-    num = splitNumber(number)
+  if (number) {
+    num = splitNumber(number);
   }
 
+  
+  
 
-  const getCardTransactions  = async () => {
-    try {
-            const res = await fetch(`${API_URL}/card/history`, {
-              method: 'POST',
-              headers: {
-                "Content-Type": "application/json",
-                
-              },
-              credentials: "include",
-              body: JSON.stringify({card_number:number}),
-            });
-      
-            if (!res.ok) {  
-              console.log(res.ok)
-              throw new Error('Network response was not ok' );
-              
-            } 
-            
-            const result = await res.json();
-            dispatch(currentCard({currentCardId:cardId,currentCardNumber:number,currentCardHistory:result}))
-            console.log(result);
-            
+  const getCardTransactions = async () => {
     
-          } catch (error) {
-            console.error('Error:', error);
-          }
-       
-      
-        };    
-        
-        useEffect(() => {
-          getCardTransactions()
-      },[])
+    try {
+      const res = await fetch(`${API_URL}/card/history`, {
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify({ card_number: number }),
+      });
 
+      if (!res.ok) {  
+        console.log(res.ok);
+        throw new Error('Network response was not ok');
+      } 
+      
+      const result = await res.json();
+      dispatch(currentCard({ 
+        currentCardId: cardId, 
+        currentCardNumber: number, 
+        currentCardHistory: result 
+      }));
+      console.log(result);
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };        
+        
+  useEffect(() => {
+    getCardTransactions();
+  }, []);
   
   return (
     <div
-      className={`card mr-6 bg-white p-4 rounded-2xl shadow-xl  w-100 flex flex-col border-gray-300 border-2 cursor-pointer  ${additionalClasses}`}
-      card-number={number}
-      card-id={cardId}
+      className={`card bg-white p-4 md:p-6 rounded-2xl shadow-xl w-full flex flex-col border-gray-300 border-2 cursor-pointer hover:shadow-2xl transition-shadow ${additionalClasses} `} 
       onClick={() => getCardTransactions()}
+      data-id={`${cardId}`}
     >
-      <div className="flex items-center justify-between pb-5">
-              <div className="text-3xl font-bold text-black pb-3">{amount}</div>
+      <div className="flex items-center justify-between pb-4 md:pb-5">
+        <div className="text-xl md:text-3xl font-bold text-black">{amount}</div>
         {iconWrapper ? (
-          <div className="w-8 h-8 bg-orange-100 border-2 border-black rounded-full flex items-center justify-center">
-            <Icon iconClass={icon} size="small"></Icon>
+          <div className="w-6 h-6 md:w-8 md:h-8 bg-orange-100 border-2 border-black rounded-full flex items-center justify-center">
+            <Icon iconClass={icon} size="small" />
           </div>
         ) : (
-          <Icon iconClass={icon} size="small"></Icon>
+          <Icon iconClass={icon} size="small" />
         )}
       </div>
 
-      <div className="text-xl flex justify-center text-black pb-3">{num}</div>
+      <div className="text-sm md:text-xl flex justify-center text-black">{num}</div>
     </div>
   );
 };
 
-export default WalletCard
+export default WalletCard;
