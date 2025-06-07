@@ -1,7 +1,7 @@
 
-import {PassSecurity} from './PassSecurity'
-import {ConnectedDevices} from './ConnectedDevices'
-import { AccountActions } from './AccountActions'
+import {PassSecurity} from '../../../SettingsFeatures/features/PassSecurity'
+import {ConnectedDevices} from '../../../SettingsFeatures/features/ConnectedDevices'
+import { AccountActions } from '../../../SettingsFeatures/features/AccountActions'
 export const Security = () => {
     return (
         <>

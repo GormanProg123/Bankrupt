@@ -12,7 +12,7 @@ export const TransferFeatures = () => {
   return (
     <>
         <div className="transfer flex min-h-screen flex-col">
-            <LoggedNavBar username="ldd"/>
+            <LoggedNavBar />
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-10 flex-grow">
              
                 <h2 className="text-2xl sm:text-3xl lg:text-4xl pb-2 font-bold">Transfer money</h2>

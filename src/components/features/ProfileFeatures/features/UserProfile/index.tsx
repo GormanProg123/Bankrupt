@@ -15,7 +15,7 @@ interface UserProfileProps {
   export const UserProfile = (props: UserProfileProps) => {
     
     return (
-      <div className="w-1/3 border-2 border-gray-300 rounded-2xl p-10 max-w-3xl mx-auto space-y-8">
+      <div className="w-2/3 border-2 border-gray-300 rounded-2xl p-10 max-w-3xl mx-auto space-y-8">
         <div className="text-center space-y-2">
           <p className="text-2xl font-semibold">Profile</p>
           <p className="text-lg text-gray-500">Your personal information</p>        

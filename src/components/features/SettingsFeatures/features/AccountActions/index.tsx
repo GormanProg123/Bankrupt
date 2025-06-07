@@ -1,5 +1,5 @@
-import { LogOutTable } from "../../../../../atoms/LogOutTable";
-import { Icon } from "../../../../../atoms/Icon";
+import { LogOutTable } from "../../../../atoms/LogOutTable";
+import { Icon } from "../../../../atoms/Icon";
 import { useState } from "react";
 export const AccountActions = () => {
   const [showLogoutModal, setShowLogoutModal] = useState(false);

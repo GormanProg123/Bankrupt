@@ -1,4 +1,4 @@
-import { Icon } from "../../../../../atoms/Icon"
+import { Icon } from "../../../../atoms/Icon"
 import {useState,useEffect} from 'react';
 import { styled } from '@mui/material/styles';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -16,7 +16,7 @@ export const PassSecurity = () => {
     },[twoFactor])
     return (
         <>
-            <div className="pass-security border-2 border-gray-300 rounded-2xl p-5 mt-5">
+            <div className="pass-security border-2 border-gray-500 rounded-2xl p-5 mt-5">
                 <h3 className="text-3xl font-medium">Password & Authentication</h3>
                 <p className="text-xl pb-3">Manage your password and security settings</p>
                 <div className="pass-block ">

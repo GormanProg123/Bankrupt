@@ -1,7 +1,7 @@
 import { Icon } from "../../../../atoms/Icon";
 import WalletCardsBlock from "./WalletCardsBlock";
 import { API_URL } from "../../../../api/baseUrl";
-import { cardsUpdate } from "../../../../../app/features/TriggerUpdate/TriggerUpdate";
+import { cardsUpdate } from "../../../../../app/features/TriggerUpdate/TriggerUpdateSlice";
 import { useDispatch,useSelector } from "react-redux";
 import { RootState } from "../../../../../app/store";
 const WalletHeader = () => {
