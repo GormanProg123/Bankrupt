@@ -5,7 +5,6 @@ import { deleteCard } from "../../../../../utils/card/card";
 import { FinancialOverview } from "../../../../atoms/FinancialOverview";
 import { API_URL } from "../../../../api/baseUrl";
 import { useNavigate } from "react-router-dom";
-import { LoggedNavBar } from "../../../../shared/LoggedNavBar";
 
 type CardData = {
   number: string;
