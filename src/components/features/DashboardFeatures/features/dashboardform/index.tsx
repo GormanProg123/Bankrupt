@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { FiCreditCard } from "react-icons/fi";
 import { VerticalHeader } from "../../../HomeFeatures/features/homeform/layout/vertheader";
+import { deleteCard } from "../../../../../utils/card/card";
+import { FinancialOverview } from "../../../../atoms/FinancialOverview";
 import { API_URL } from "../../../../api/baseUrl";
 import { useNavigate } from "react-router-dom";
 
@@ -16,9 +18,11 @@ type CardData = {
 
 export const DashboardForm = () => {
   const [cardData, setCardData] = useState<CardData[] | null>(null);
+  const [selectedCard, setSelectedCard] = useState<CardData | null>(null);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const navigate = useNavigate();
 
-  useEffect(() => {
+  const fetchCards = () => {
     fetch(`${API_URL}/card`, {
       method: "GET",
       credentials: "include",
@@ -32,24 +36,48 @@ export const DashboardForm = () => {
         }
       })
       .catch((err) => console.error("Card fetch error:", err));
+  };
+
+  useEffect(() => {
+    fetchCards();
   }, []);
+
+  const handleDelete = async () => {
+    if (!selectedCard) return;
+
+    const success = await deleteCard(selectedCard.number);
+
+    if (success) {
+      setIsDeleteModalOpen(false);
+      setSelectedCard(null);
+      fetchCards();
+    } else {
+      console.error("Failed to delete card");
+    }
+  };
 
   return (
     <div className="flex">
       <VerticalHeader />
 
-      <div className="flex-1 p-4">
+      <div className="flex-1 p-6">
         <h1 className="text-2xl font-bold mb-2">Dashboard</h1>
-        <p className="text-gray-600">
+        <p className="text-gray-600 mb-6">
           Overview of your financial accounts and activity
         </p>
 
-        {cardData && cardData.length > 0 ? (
-          <div className="flex gap-6 mt-8 items-start flex-wrap">
+        <FinancialOverview />
+
+        {cardData && cardData.length > 0 && (
+          <div className="flex gap-6 mt-10 flex-wrap">
             {cardData.map((card, index) => (
               <div
                 key={index}
-                className="w-80 p-5 border border-gray-300 rounded-xl shadow bg-white"
+                className="w-80 p-5 border border-gray-300 rounded-xl shadow bg-white cursor-pointer"
+                onClick={() => {
+                  setSelectedCard(card);
+                  setIsDeleteModalOpen(true);
+                }}
               >
                 <div className="flex justify-between mb-2">
                   <h2 className="text-lg font-semibold">Card #{index + 1}</h2>
@@ -94,45 +122,55 @@ export const DashboardForm = () => {
                 </div>
               </div>
             ))}
+          </div>
+        )}
 
-            <div className="border border-gray-300 rounded-xl p-8 w-96 bg-white shadow-sm">
-              <div className="flex justify-center mb-5 text-gray-700 text-5xl">
-                <FiCreditCard />
-              </div>
-              <h2 className="text-xl font-semibold text-black text-center mb-2">
-                Apply for a New Card
-              </h2>
-              <p className="text-gray-600 text-center mb-5">
-                Get a new debit or credit card for your account
-              </p>
-              <div className="flex justify-center">
-                <button
-                  className="bg-black text-white px-5 py-2.5 rounded-lg border border-black text-sm hover:bg-gray-800"
-                  onClick={() => navigate("/card-create")}
-                >
-                  + Apply Now
-                </button>
-              </div>
+        <div className="flex justify-center mt-10">
+          <div className="border border-gray-300 rounded-xl p-8 w-full max-w-md bg-white shadow-sm">
+            <div className="flex justify-center mb-5 text-gray-700 text-5xl">
+              <FiCreditCard />
+            </div>
+            <h2 className="text-xl font-semibold text-black text-center mb-2">
+              Apply for a New Card
+            </h2>
+            <p className="text-gray-600 text-center mb-5">
+              Get a new debit or credit card for your account
+            </p>
+            <div className="flex justify-center">
+              <button
+                className="bg-black text-white px-5 py-2.5 rounded-lg border border-black text-sm hover:bg-gray-800"
+                onClick={() => navigate("/card-create")}
+              >
+                + Apply Now
+              </button>
             </div>
           </div>
-        ) : (
-          <div className="flex justify-center mt-12">
-            <div className="border border-gray-300 rounded-xl p-8 w-full max-w-md bg-white shadow-sm">
-              <div className="flex justify-center mb-5 text-gray-700 text-5xl">
-                <FiCreditCard />
-              </div>
-              <h2 className="text-xl font-semibold text-black text-center mb-2">
-                Apply for a New Card
-              </h2>
-              <p className="text-gray-600 text-center mb-5">
-                Get a new debit or credit card for your account
+        </div>
+
+        {isDeleteModalOpen && selectedCard && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+            <div className="bg-white rounded-lg shadow-lg p-6 w-96">
+              <h3 className="text-xl font-semibold text-center mb-4">
+                Are you sure you want to delete this card?
+              </h3>
+              <p className="text-center text-gray-600 mb-6">
+                **** **** **** {selectedCard.number.slice(-4)}
               </p>
-              <div className="flex justify-center">
+              <div className="flex justify-between">
                 <button
-                  className="bg-black text-white px-5 py-2.5 rounded-lg border border-black text-sm hover:bg-gray-800"
-                  onClick={() => navigate("/card-create")}
+                  className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
+                  onClick={handleDelete}
                 >
-                  + Apply Now
+                  Yes, delete
+                </button>
+                <button
+                  className="bg-gray-300 text-black px-4 py-2 rounded hover:bg-gray-400"
+                  onClick={() => {
+                    setIsDeleteModalOpen(false);
+                    setSelectedCard(null);
+                  }}
+                >
+                  Cancel
                 </button>
               </div>
             </div>
