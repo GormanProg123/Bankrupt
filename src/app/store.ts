@@ -4,7 +4,7 @@ import transferDataReducer from './features/TransferData/TransferDataSlice'
 import WalletCardReducer from './features/WalletCard/WalletCardSlice'
 import FirstCardReducer from './features/WalletCard/FirstCardSlice'
 import SavingsGoalModalReducer from './features/SavingsGoalModal/SavingsGoalModalSlice'
-import TriggerUpdateReducer from './features/TriggerUpdate/TriggerUpdate'
+import TriggerUpdateReducer from './features/TriggerUpdate/TriggerUpdateSlice'
 
 export const store = configureStore({
   reducer: {

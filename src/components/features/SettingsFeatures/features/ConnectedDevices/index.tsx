@@ -1,9 +1,9 @@
 
-import { Icon } from "../../../../../atoms/Icon"
+import { Icon } from "../../../../atoms/Icon"
 export const ConnectedDevices = () => {
     return (
         <>
-            <div className="connected-devices border-2 border-gray-300 rounded-2xl p-5 my-5">
+            <div className="connected-devices border-2 border-gray-500 rounded-2xl p-5 my-5">
                 <h2 className="text-3xl font-medium">Connected Devices</h2>
                 <p>Manage devices that have access to your account</p>
                 <div className="user-device pt-4 flex justify-between items-center">

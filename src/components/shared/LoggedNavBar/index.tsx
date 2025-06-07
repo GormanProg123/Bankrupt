@@ -2,10 +2,8 @@ import { useState } from "react";
 import { Icon } from "../../atoms/Icon";
 import { Logo } from "../../atoms/Logo/index";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../../context/AuthContext";
 
-interface LoggedNavBarProps {
-  username: string;
-}
 
 const navigationLinks = [
   { href: "/home", label: "Home", icon: "fa-house" },
@@ -14,7 +12,8 @@ const navigationLinks = [
   { href: "/transfer", label: "Transfer", icon: "fa-arrows-left-right" },
 ] as const;
 
-export const LoggedNavBar = ({ username }: LoggedNavBarProps) => {
+export const LoggedNavBar = () => {
+  const { user } = useAuth();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
 
@@ -54,7 +53,7 @@ export const LoggedNavBar = ({ username }: LoggedNavBarProps) => {
               className="flex items-center space-x-2 text-gray-700 bg-transparent border border-gray-300 hover:border-gray-500 hover:bg-gray-50 px-4 py-2 rounded-xl transition-all duration-200"
             >
               <Icon iconClass="fa-user" size="small" />
-              <span className="font-medium pl-2">{username}</span>
+              <span className="font-medium pl-2">{user?.first_name} {user?.last_name}</span>
             </button>
           </div>
 
@@ -100,7 +99,7 @@ export const LoggedNavBar = ({ username }: LoggedNavBarProps) => {
                 className="flex items-center space-x-4 w-full text-left text-white bg-blue-600 hover:bg-blue-700 px-4 py-6 rounded-xl transition-all duration-200 text-lg font-medium mt-8"
               >
                 <Icon iconClass="fa-user" size="medium" />
-                <span>Profile ({username})</span>
+                <span>Profile ({user?.first_name} {user?.last_name})</span>
               </button>
             </div>
           </div>
