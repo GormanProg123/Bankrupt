@@ -105,8 +105,6 @@ export const VerticalHeader = () => {
         </a>
       </div>
 
-    
-      <div className="hidden lg:block w-64 xl:w-72 flex-shrink-0" />
     </>
   );
 };
