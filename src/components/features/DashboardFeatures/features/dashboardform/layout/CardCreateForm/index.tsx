@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { FiCheck } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
-import { API_URL } from "../../../../../../api/baseUrl";
-
+import { createCard } from "../../../../../../../utils/card/card";
 export const CardCreateForm = () => {
   const navigate = useNavigate();
   const [selectedDesign, setSelectedDesign] = useState<string | null>(null);
@@ -32,21 +31,12 @@ export const CardCreateForm = () => {
       },
     };
 
-    try {
-      const res = await fetch(`${API_URL}/card/create`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-        body: JSON.stringify(payload),
-      });
+    const success = await createCard(payload);
 
-      if (!res.ok) throw new Error("Card creation failed");
+    if (success) {
       alert("Card successfully created!");
       navigate("/dashboard");
-    } catch (err) {
-      console.error(err);
+    } else {
       alert("Error creating card");
     }
   };
