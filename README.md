@@ -1,54 +1,64 @@
-# React + TypeScript + Vite
+# Bankrupt
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Bankrupt** is a frontend application for a demo banking system. It was created as part of the university course _"Technologie internetowe"_.
 
-Currently, two official plugins are available:
+## Description
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This project represents a demo version of a banking application. It showcases modern frontend technologies such as React and TypeScript, including data fetching, form handling, and frontend architecture. It demonstrates how to build a modular and scalable application with real-world functionality in mind.
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- User registration
+- User login
+- Password reset
+- Two-factor authentication (2FA)
+- Card creation
+- Financial transfers
+- Creation and tracking of savings goals
+- Bill payments
+- Editing personal user data
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## Authors
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+- [@GormanProg123](https://github.com/GormanProg123)
+- [@ProbablyNoth1ng](https://github.com/ProbablyNoth1ng)
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Backend authors
+- [Backend for project](https://github.com/ChaichanaTeam/bankrupt_back)
+- [@Os3k1mtr1l](https://github.com/os3k1mtr1l)
+- [@Ndmytryshyn5](https://github.com/ndmytryshyn5)
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+## Technologies Used
+
+- React
+- TypeScript
+- React Hook Form
+- React Router DOM
+- clsx
+- Tailwind CSS
+
+## Requirements
+
+Before running the application, make sure you have:
+
+- Node.js installed
+- Cloned the repository
+- Created an `.env` file with the required variables
+
+## Launching the Project
+
+```bash
+# Clone the repository
+git clone https://github.com/your-username/bankrupt.git
+
+# Navigate to the project directory
+cd bankrupt
+
+# Install dependencies
+npm install
+
+# Create a .env file and add your API URL
+echo "VITE_API_URL=YOUR_API_URL" > .env
+
+# Start the development server
+npm run dev
