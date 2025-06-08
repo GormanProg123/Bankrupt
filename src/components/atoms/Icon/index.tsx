@@ -29,6 +29,8 @@ import {
   faBars,
   faArrowsLeftRight,
   faHouse,
+  faCalendar,
+  faClock
 } from "@fortawesome/free-solid-svg-icons";
 import "./styles/style.css";
 
@@ -62,7 +64,10 @@ interface IconProps {
     | "fa-xmark"
     | "fa-bars"
     | "fa-arrows-left-right"
-    | "fa-house";
+    | "fa-house"
+    | "fa-calendar"
+    | "fa-clock";
+
   size?: "small" | "medium" | "large";
 }
 
@@ -96,6 +101,8 @@ const iconMap = {
   "fa-bars":faBars,
   "fa-house":faHouse,
   "fa-arrows-left-right":faArrowsLeftRight,
+  "fa-calendar":faCalendar,
+  "fa-clock":faClock,
 };
 
 export const Icon = ({ iconClass, size = "large" }: IconProps) => {

@@ -17,6 +17,7 @@ import { ResetPasswordConfirmPage } from "../components/pages/ResetPasswordConfi
 import { TwoFAConfirmPage } from "../components/pages/TwoFAConfirmPage";
 import { SettingsPage } from "../components/pages/SettingsPage";
 import { SavingAccountPage } from "../components/pages/SavingAccountPage";
+import { BillsPage } from "../components/pages/BillsPage";
 
 export const AppRoutes = () => {
   return (
@@ -39,6 +40,7 @@ export const AppRoutes = () => {
       <Route path="/2fa-confirm" element={<TwoFAConfirmPage />} />
       <Route path="/settings" element={<SettingsPage />} />
       <Route path="/saving-account" element={<SavingAccountPage />} />
+      <Route path="/bills" element={<BillsPage />} />
     </Routes>
   );
 };
