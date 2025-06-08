@@ -49,7 +49,7 @@ Before running the application, make sure you have:
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/bankrupt.git
+git clone https://github.com/GormanProg123/Bankrupt.git
 
 # Navigate to the project directory
 cd bankrupt
