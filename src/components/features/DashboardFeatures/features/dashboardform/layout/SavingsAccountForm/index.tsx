@@ -1,19 +1,17 @@
 import { useForm } from "react-hook-form";
 import { API_URL } from "../../../../../../api/baseUrl";
-import { useNavigate } from "react-router-dom";
 
 type FormData = {
   name: string;
   goal: number;
 };
 
-export const SavingsAccountForm = () => {
+export const SavingsAccountForm = ({ onCancel }: { onCancel: () => void }) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>();
-  const navigate = useNavigate();
 
   const onSubmit = async (data: FormData) => {
     try {
@@ -27,7 +25,7 @@ export const SavingsAccountForm = () => {
       });
 
       if (res.ok) {
-        navigate("/dashboard");
+        onCancel();
       } else {
         console.error("Failed to create saving");
       }
@@ -37,7 +35,10 @@ export const SavingsAccountForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="p-6 max-w-md mx-auto">
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="p-6 px-20 max-w-md mx-auto bg-gray-600 rounded-xl"
+    >
       <h2 className="text-xl font-semibold mb-4">Create Saving Goal</h2>
 
       <div className="mb-4">
@@ -64,12 +65,21 @@ export const SavingsAccountForm = () => {
         )}
       </div>
 
-      <button
-        type="submit"
-        className="bg-black text-white px-4 py-2 rounded hover:bg-gray-800"
-      >
-        Submit
-      </button>
+      <div className="flex justify-between">
+        <button
+          type="button"
+          onClick={onCancel}
+          className="bg-black text-white px-4 py-2 rounded hover:bg-gray-800"
+        >
+          Cancel
+        </button>
+        <button
+          type="submit"
+          className="bg-black text-white px-4 py-2 rounded hover:bg-gray-800"
+        >
+          Submit
+        </button>
+      </div>
     </form>
   );
 };

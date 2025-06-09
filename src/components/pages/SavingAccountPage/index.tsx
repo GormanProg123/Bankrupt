@@ -1,5 +1,5 @@
-import { SavingsAccountForm } from "../../features/DashboardFeatures/features/dashboardform/layout/SavingsAccountForm";
+import { SavingsFeatures } from "../../features/SavingsFeatures";
 
 export const SavingAccountPage = () => {
-  return <SavingsAccountForm />;
+  return <SavingsFeatures />;
 };
