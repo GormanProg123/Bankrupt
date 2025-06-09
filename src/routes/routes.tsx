@@ -22,24 +22,37 @@ import { BillsPage } from "../components/pages/BillsPage";
 export const AppRoutes = () => {
   return (
     <Routes>
+      {/* === Main page === */}
       <Route path="/" element={<MainPage />} />
+
+      {/* === Auth === */}
       <Route path="/login" element={<LoginPage />} />
+      <Route path="/2fa-confirm" element={<TwoFAConfirmPage />} />
+      <Route path="/password-reset" element={<ResetPasswordPage />} />
+      <Route path="/reset" element={<ResetPasswordConfirmPage />} />
       <Route path="/registration" element={<RegistrationPage />} />
       <Route path="/registration/step1" element={<RegistrationStepOne />} />
       <Route path="/registration/step2" element={<RegistrationStepTwo />} />
       <Route path="/registration/step3" element={<RegistrationStepThree />} />
-      <Route path="/wallet" element={<WalletPage />} />
+
+      {/* === Profile === */}
       <Route path="/profile" element={<ProfilePage />} />
-      <Route path="/transfer" element={<TransferPage />} />
+      <Route path="/settings" element={<SettingsPage />} />
+
+      {/* === Basic functionality === */}
       <Route path="/home" element={<HomePage />} />
       <Route path="/dashboard" element={<DashboardPage />} />
-      <Route path="/card-create" element={<CardCreatePage />} />
-      <Route path="/password-reset" element={<ResetPasswordPage />} />
-      <Route path="/reset" element={<ResetPasswordConfirmPage />} />
+      <Route path="/wallet" element={<WalletPage />} />
+
+      {/* === Card === */}
+      <Route path="/transfer" element={<TransferPage />} />
       <Route path="/transfer-error" element={<TransferError />} />
-      <Route path="/2fa-confirm" element={<TwoFAConfirmPage />} />
-      <Route path="/settings" element={<SettingsPage />} />
+      <Route path="/card-create" element={<CardCreatePage />} />
+
+      {/* === Savings === */}
       <Route path="/saving-account" element={<SavingAccountPage />} />
+
+      {/* === Bills === */}
       <Route path="/bills" element={<BillsPage />} />
     </Routes>
   );
