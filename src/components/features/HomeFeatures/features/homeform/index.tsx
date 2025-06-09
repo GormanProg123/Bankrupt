@@ -29,22 +29,22 @@ export const HomeForm = () => {
             <WalletCardsBlock />
           </div>
 
-          {/* Main Content Grid */}
+          
           <div className="gap-2 sm:gap-4 w-full mt-6 sm:mt-10">
-            {/* First Row - Quick Actions and Bills */}
+       
             <div className="flex flex-col xl:flex-row gap-2 sm:gap-4 mb-2 sm:mb-4">
               <HomeQuickActions />
               <UpcomingBills />
             </div>
             
-            {/* Second Row - Transactions and Insights */}
+         
             <div className="flex flex-col xl:flex-row gap-2 sm:gap-4 mb-2 sm:mb-4">
               <RecentTransactions />
               <FinancialInsights />
             </div>
           </div>
 
-          {/* Bottom Row - Three Equal Columns */}
+        
           <div className="flex flex-col lg:flex-row w-full gap-2 sm:gap-4">
             <div className="w-full lg:w-1/3">
               <SavingsGoals />

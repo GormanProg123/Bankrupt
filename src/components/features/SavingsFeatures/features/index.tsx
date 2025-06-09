@@ -6,7 +6,8 @@ import Footer from "../../../shared/Footer"
 import { SavingsAccountForm } from "../../DashboardFeatures/features/dashboardform/layout/SavingsAccountForm"
 import { useState,useEffect } from "react"
 import { API_URL } from "../../../api/baseUrl"
-
+import { useSelector } from "react-redux"
+import { RootState } from "../../../../app/store"
 interface ISavingData {
     id:number,
     name:string,
@@ -21,6 +22,7 @@ export default function SavingsGoals() {
     const [overallBalance, setOverallBalance] = useState<number>(0)
     const [overallGoal, setOverallGoal] = useState<number>(0)
 
+    const update = useSelector((state:RootState) => state.triggerUpdateSlice.savingsDepTopUp)
 
     const handleCloseModal = () => {
         setShowModal(false);
@@ -29,11 +31,11 @@ export default function SavingsGoals() {
     
   
     const getSavingsData = async () => {
-        try {
+    try {
         const res = await fetch(`${API_URL}/savings`, {
             method: 'GET',
             headers: {
-            "Content-Type": "application/json",
+                "Content-Type": "application/json",
             },
             credentials: "include",
         });
@@ -45,23 +47,31 @@ export default function SavingsGoals() {
         
         const result = await res.json();
         setSavingsData(result);
-        result.map((data:ISavingData) => {
-            setOverallBalance((prev) => prev+data.balance)
-            setOverallGoal((prev) => prev+data.goal)
-        })
-        console.log(result,'bills');
-
+        
+        
+        const totals = result.reduce((acc:any, data:any) => {
+            acc.totalBalance += data.balance;
+            acc.totalGoal += data.goal;
+            return acc;
+        }, { totalBalance: 0, totalGoal: 0 });
+        
+        
+        setOverallBalance(totals.totalBalance);
+        setOverallGoal(totals.totalGoal);
+        
+        console.log(result, 'savings data');
             
-        } catch (error) {
+    } catch (error) {
         console.error('Error:', error);
-        }
-    };    
+    }
+};
 
     useEffect(() => {
         getSavingsData();
-    }, []);
+    }, [showModal,update]);
 
 
+    
     const getProgressPercent = (balance: number, goal: number): number => {
         if (goal <= 0) return 0; 
         const progress = (balance / goal) * 100;

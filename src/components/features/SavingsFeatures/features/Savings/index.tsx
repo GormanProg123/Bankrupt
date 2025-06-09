@@ -3,6 +3,9 @@ import { LuPlus, LuMinus } from "react-icons/lu";
 import { SavingsMoneyModal } from "../SavingsMoneyModal"; 
 import { API_URL } from "../../../../api/baseUrl";
 import { CardData } from "../../../../../types/types";
+import { useDispatch, useSelector } from "react-redux";
+import { savingsDepTopUp } from "../../../../../app/features/TriggerUpdate/TriggerUpdateSlice";
+import { RootState } from "../../../../../app/store";
 
 interface GoalCardProps {
   id:number,
@@ -18,7 +21,10 @@ interface GoalCardProps {
 export const SavingCard = ({id, title, current, target, progress, completed = false }: GoalCardProps) => {
   const [modalType, setModalType] = useState<"topUp" | "decrease" | null>(null);
   const [cardsData, setCardsData] = useState<CardData[]>([])
-
+  
+  const update = useSelector((state:RootState) => state.triggerUpdateSlice)
+  const dispatch = useDispatch();
+  
    const getCards = async () => {
        try {
          const res = await fetch(`${API_URL}/card`, {
@@ -61,10 +67,10 @@ export const SavingCard = ({id, title, current, target, progress, completed = fa
 
       if (!res.ok) {
         console.error("Failed to process transfer");
-      } else {
-        // Optionally refresh data
-        console.log("Transfer successful");
-      }
+      } 
+      dispatch(savingsDepTopUp({savingsUpdate:!update.savingsUpdate,cardsUpdate:update.cardsUpdate,savingsDepTopUp:!update.savingsDepTopUp}))
+      console.log("Transfer successful");
+      
     } catch (err) {
       console.error("Error during transfer:", err);
     }

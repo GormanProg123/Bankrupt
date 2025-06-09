@@ -7,6 +7,7 @@ import { ITriggerUpdate } from '../../../types/types'
 const initialState = {
     cardsUpdate:false,
     savingsUpdate:false,
+    savingsDepTopUp:false
 }
 
 
@@ -22,11 +23,15 @@ export const triggerUpdateSlice = createSlice({
         state.savingsUpdate = action.payload.savingsUpdate
         console.log(action.payload.savingsUpdate)
     },
+    savingsDepTopUp: (state,action: PayloadAction<ITriggerUpdate>) => {
+        state.savingsDepTopUp = action.payload.savingsDepTopUp
+        console.log(action.payload.savingsDepTopUp)
+    },
   },
 })
 
   
-export const { cardsUpdate,savingsUpdate } = triggerUpdateSlice.actions
+export const { cardsUpdate,savingsUpdate, savingsDepTopUp} = triggerUpdateSlice.actions
 
 export default triggerUpdateSlice.reducer
 

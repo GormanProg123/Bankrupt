@@ -9,8 +9,8 @@ const ModalGoal = () => {
   const [goalName, setGoalName] = useState<string>();
   const [targetAmount, setTargetAmount] = useState<number>();
   const dispatch = useDispatch();
-  const updateSavings = useSelector((state:RootState) => state.triggerUpdateSlice.savingsUpdate)
-
+  const updateSavings = useSelector((state:RootState) => state.triggerUpdateSlice)
+  
   const onModalClose = () => { 
     dispatch(savingsModalState({modalState:false}))
   }
@@ -37,7 +37,7 @@ const ModalGoal = () => {
           }   
             
           const result = await res.json();
-          dispatch(savingsUpdate({savingsUpdate:!updateSavings,cardsUpdate:false}))
+          dispatch(savingsUpdate({savingsUpdate:!updateSavings.savingsUpdate,cardsUpdate:false,savingsDepTopUp:updateSavings.savingsDepTopUp}))
           console.log(result)
         } catch (error) {
         console.error('Error:', error);

@@ -42,4 +42,5 @@ export interface CardHistory {
 export interface ITriggerUpdate {
     cardsUpdate:boolean,
     savingsUpdate:boolean,
+    savingsDepTopUp:boolean
 }

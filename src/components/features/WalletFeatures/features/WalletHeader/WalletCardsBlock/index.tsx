@@ -33,7 +33,7 @@ const WalletCardsBlock = () => {
       dispatch(firstCard({ firstCardNumber: result[0].number }));
 
 
-      
+        
     } catch (error) {
       console.error('Error:', error);
     }

@@ -5,7 +5,7 @@ import { cardsUpdate } from "../../../../../app/features/TriggerUpdate/TriggerUp
 import { useDispatch,useSelector } from "react-redux";
 import { RootState } from "../../../../../app/store";
 const WalletHeader = () => {
-  const updateCards= useSelector((state:RootState) => state.triggerUpdateSlice.cardsUpdate)
+  const updateCards= useSelector((state:RootState) => state.triggerUpdateSlice)
   const dispatch = useDispatch()
   const createNewCard = async () => {
     try {
@@ -24,7 +24,7 @@ const WalletHeader = () => {
       }
 
       const result = await res.json();
-      dispatch(cardsUpdate({savingsUpdate:false,cardsUpdate:!updateCards}))
+      dispatch(cardsUpdate({savingsUpdate:updateCards.savingsUpdate,cardsUpdate:false,savingsDepTopUp:updateCards.savingsDepTopUp}))
       console.log(result);
     } catch (error) {
       console.error('Error:', error);
