@@ -50,6 +50,7 @@ export const UpcomingBills = () => {
             <div className="upcoming-bills px-4 sm:px-6 lg:px-8 xl:px-10 py-3 sm:py-4 lg:py-5 border rounded-xl w-full xl:w-2/5">
                 <h2 className="text-lg sm:text-xl lg:text-2xl font-bold">Upcoming Bills</h2>
                 <p className="text-sm sm:text-base lg:text-xl">Due in the next 7 days</p>
+                
                 {billsData.map((data) => {
                     let date1 = new Date(data.due_date)
                     return (
