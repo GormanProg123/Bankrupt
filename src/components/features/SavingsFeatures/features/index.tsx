@@ -1,5 +1,5 @@
 
-import { LuPlus, LuMinus, LuChartBar, LuSettings,  } from "react-icons/lu"
+import { LuPlus, LuChartBar} from "react-icons/lu"
 import { SavingCard } from "./Savings"
 import { LoggedNavBar } from "../../../shared/LoggedNavBar"
 import Footer from "../../../shared/Footer"
@@ -97,7 +97,7 @@ export default function SavingsGoals() {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
         {
-            savingsData.map((savingData,id) => {
+            savingsData.map((savingData) => {
                 return (
                     <SavingCard
                         id={savingData.id}
