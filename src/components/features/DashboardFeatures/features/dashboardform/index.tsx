@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { FiCreditCard } from "react-icons/fi";
+import { FiCreditCard, FiEye, FiEyeOff } from "react-icons/fi";
 import { VerticalHeader } from "../../../HomeFeatures/features/homeform/layout/vertheader";
 import { deleteCard } from "../../../../../utils/card/card";
 import { FinancialOverview } from "../../../../atoms/FinancialOverview";
@@ -36,6 +36,7 @@ export const DashboardForm = () => {
   const [savings, setSavings] = useState<Saving[]>([]);
   const [selectedSavingId, setSelectedSavingId] = useState<number | null>(null);
   const [isDeleteSavingModalOpen, setIsDeleteSavingModalOpen] = useState(false);
+  const [visibleCardId, setVisibleCardId] = useState<number | null>(null);
 
   const navigate = useNavigate();
 
@@ -170,6 +171,11 @@ export const DashboardForm = () => {
     }
   };
 
+  const formatCardNumber = (number: string, showFull: boolean) => {
+    if (showFull) return number;
+    return "**** **** **** " + number.slice(-4);
+  };
+
   return (
     <div className={`${screenSize > 768 ? "flex w-full" : ""}`}>
       <div>
@@ -257,8 +263,11 @@ export const DashboardForm = () => {
                         card.cardholder_surname &&
                         card.expiration_date ? (
                           <div className="absolute bottom-4 left-4">
-                            <div className="mb-1 text-lg tracking-widest">
-                              **** **** **** {card.number.slice(-4)}
+                            <div className="mb-1 text-lg tracking-widest font-mono">
+                              {formatCardNumber(
+                                card.number,
+                                visibleCardId === card.card_id
+                              )}
                             </div>
                             <div className="text-sm">
                               {card.cardholder_name} {card.cardholder_surname}
@@ -266,7 +275,37 @@ export const DashboardForm = () => {
                             <div className="text-sm mt-1">
                               Expires {card.expiration_date}
                             </div>
-                            <div className="text-sm">CVV ***</div>
+                            <div className="flex items-center text-sm mt-1">
+                              CVV&nbsp;
+                              <span className="mr-2 font-mono">
+                                {visibleCardId === card.card_id
+                                  ? card.cvv
+                                  : "***"}
+                              </span>
+                              <button
+                                type="button"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  setVisibleCardId(
+                                    visibleCardId === card.card_id
+                                      ? null
+                                      : card.card_id
+                                  );
+                                }}
+                                aria-label={
+                                  visibleCardId === card.card_id
+                                    ? "Hide CVV and card number"
+                                    : "Show CVV and card number"
+                                }
+                                className="focus:outline-none"
+                              >
+                                {visibleCardId === card.card_id ? (
+                                  <FiEyeOff />
+                                ) : (
+                                  <FiEye />
+                                )}
+                              </button>
+                            </div>
                             <div className="text-sm mt-1 font-semibold">
                               Balance: ${card.balance.toFixed(2)}
                             </div>
@@ -342,89 +381,63 @@ export const DashboardForm = () => {
                             </option>
                             {cardData.map((card) => (
                               <option key={card.card_id} value={card.card_id}>
-                                **** **** **** {card.number.slice(-4)} -{" "}
-                                {card.cardholder_name} {card.cardholder_surname}
+                                {formatCardNumber(card.number, false)}
                               </option>
                             ))}
                           </select>
 
                           <input
                             type="number"
-                            min={1}
+                            min={0}
                             placeholder="Amount"
-                            className="border p-2 rounded w-24"
                             id="amountInput"
+                            className="border p-2 rounded w-32"
                           />
 
                           <button
-                            className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
                             onClick={() => {
-                              const amountInput = document.getElementById(
+                              const input = document.getElementById(
                                 "amountInput"
-                              ) as HTMLInputElement;
-                              const amount = Number(amountInput.value);
-                              if (
-                                amount > 0 &&
-                                selectedCard !== null &&
-                                selectedSavingId !== null
-                              ) {
+                              ) as HTMLInputElement | null;
+                              const amount = input ? Number(input.value) : 0;
+                              if (amount <= 0) return;
+
+                              if (selectedSavingId && selectedCard) {
                                 topUpSaving(
                                   amount,
                                   selectedSavingId,
                                   selectedCard.card_id
                                 );
-                                amountInput.value = "";
-                              } else {
-                                alert(
-                                  "Please select card and enter valid amount"
-                                );
                               }
                             }}
+                            className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
                           >
                             Top Up
                           </button>
 
                           <button
-                            className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
                             onClick={() => {
-                              const amountInput = document.getElementById(
+                              const input = document.getElementById(
                                 "amountInput"
-                              ) as HTMLInputElement;
-                              const amount = Number(amountInput.value);
-                              if (
-                                amount > 0 &&
-                                selectedCard !== null &&
-                                selectedSavingId !== null
-                              ) {
+                              ) as HTMLInputElement | null;
+                              const amount = input ? Number(input.value) : 0;
+                              if (amount <= 0) return;
+
+                              if (selectedSavingId && selectedCard) {
                                 decreaseSaving(
                                   amount,
                                   selectedSavingId,
                                   selectedCard.card_id
                                 );
-                                amountInput.value = "";
-                              } else {
-                                alert(
-                                  "Please select card and enter valid amount"
-                                );
                               }
                             }}
+                            className="bg-yellow-600 text-white px-4 py-2 rounded hover:bg-yellow-700"
                           >
                             Withdraw
                           </button>
                         </div>
                       )}
                     </>
-                  )}
-
-                  {selectedSavingId === null && (
-                    <p className="text-gray-600 mt-2">
-                      Select a saving account to manage funds
-                    </p>
-                  )}
-                  {(!cardData || cardData.length === 0) && (
-                    <p className="text-gray-600 mt-2">
-                      No cards available to select
-                    </p>
                   )}
                 </>
               ) : (
@@ -434,64 +447,62 @@ export const DashboardForm = () => {
               )}
             </div>
           )}
+
+          {isDeleteModalOpen && selectedCard && (
+            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+              <div className="bg-white rounded-lg p-6 w-96 max-w-full">
+                <h3 className="text-lg font-semibold mb-4">
+                  Delete Card Confirmation
+                </h3>
+                <p className="mb-6">
+                  Are you sure you want to delete the card ending with{" "}
+                  {selectedCard.number.slice(-4)}?
+                </p>
+                <div className="flex justify-end gap-4">
+                  <button
+                    className="px-4 py-2 rounded border border-gray-300 hover:bg-gray-100"
+                    onClick={() => setIsDeleteModalOpen(false)}
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    className="px-4 py-2 rounded bg-red-600 text-white hover:bg-red-700"
+                    onClick={handleDelete}
+                  >
+                    Delete
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {isDeleteSavingModalOpen && selectedSavingId !== null && (
+            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+              <div className="bg-white rounded-lg p-6 w-96 max-w-full">
+                <h3 className="text-lg font-semibold mb-4">
+                  Delete Saving Confirmation
+                </h3>
+                <p className="mb-6">
+                  Are you sure you want to delete this saving account?
+                </p>
+                <div className="flex justify-end gap-4">
+                  <button
+                    className="px-4 py-2 rounded border border-gray-300 hover:bg-gray-100"
+                    onClick={() => setIsDeleteSavingModalOpen(false)}
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    className="px-4 py-2 rounded bg-red-600 text-white hover:bg-red-700"
+                    onClick={handleDeleteSaving}
+                  >
+                    Delete
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
-
-        {isDeleteModalOpen && selectedCard && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-            <div className="bg-white rounded-lg shadow-lg p-6 w-96">
-              <h3 className="text-xl font-semibold text-center mb-4">
-                Are you sure you want to delete this card?
-              </h3>
-              <p className="text-center text-gray-600 mb-6">
-                **** **** **** {selectedCard.number.slice(-4)}
-              </p>
-              <div className="flex justify-between">
-                <button
-                  className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
-                  onClick={handleDelete}
-                >
-                  Yes, delete
-                </button>
-                <button
-                  className="bg-gray-300 text-black px-4 py-2 rounded hover:bg-gray-400"
-                  onClick={() => {
-                    setIsDeleteModalOpen(false);
-                    setSelectedCard(null);
-                  }}
-                >
-                  Cancel
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {isDeleteSavingModalOpen && selectedSavingId !== null && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-            <div className="bg-white rounded-lg shadow-lg p-6 w-96">
-              <h3 className="text-xl font-semibold text-center mb-4">
-                Are you sure you want to delete this saving?
-              </h3>
-              <p className="text-center text-gray-600 mb-6">
-                {savings.find((s) => s.id === selectedSavingId)?.name}
-              </p>
-              <div className="flex justify-between">
-                <button
-                  className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
-                  onClick={handleDeleteSaving}
-                >
-                  Yes, delete
-                </button>
-                <button
-                  className="bg-gray-300 text-black px-4 py-2 rounded hover:bg-gray-400"
-                  onClick={() => setIsDeleteSavingModalOpen(false)}
-                >
-                  Cancel
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
       </div>
     </div>
   );
